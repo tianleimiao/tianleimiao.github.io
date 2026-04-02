@@ -17,7 +17,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Your Name — Creative Studio",
+  title: "Kai Tianlei Miao — Creative Studio",
   description: "Personal portfolio with WebGL shader hero.",
 };
 

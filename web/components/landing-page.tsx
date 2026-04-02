@@ -55,39 +55,25 @@ export function LandingPage() {
           </svg>
         </div>
 
-        <svg
-          className="pointer-events-none absolute inset-0 z-[3] h-full w-full opacity-40"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          aria-hidden
+        <div
+          className="hero-animate-group pointer-events-none absolute right-6 top-6 z-20 flex flex-col items-end gap-3 md:right-12 md:top-10 lg:right-20"
         >
-          <path className="noodle-path" vectorEffect="non-scaling-stroke" d="M 6 58 Q 28 32 44 48 T 74 40" />
-          <path
-            className="noodle-path"
-            vectorEffect="non-scaling-stroke"
-            d="M 94 38 Q 68 62 52 52 T 26 58"
-            style={{ animationDelay: "-1.2s" }}
-            strokeDasharray="6 20"
-          />
-        </svg>
+          <p className="max-w-[min(100vw-3rem,20rem)] text-right font-heading text-xs font-medium uppercase tracking-widest text-blue-500 sm:text-sm">
+            AI · Product · Launch
+          </p>
+          <div className="flex justify-end gap-4 text-blue-400/50 sm:gap-6" aria-hidden>
+            <Infinity className="h-5 w-5 shrink-0 animate-float" strokeWidth={1.5} />
+            <Rocket className="h-5 w-5 shrink-0 animate-float" style={{ animationDelay: "0.15s" }} strokeWidth={1.5} />
+            <Shield className="h-5 w-5 shrink-0 animate-float" style={{ animationDelay: "0.3s" }} strokeWidth={1.5} />
+            <Brain className="h-5 w-5 shrink-0 animate-float" style={{ animationDelay: "0.45s" }} strokeWidth={1.5} />
+          </div>
+        </div>
 
         <div className="relative z-20 mx-auto w-full max-w-6xl">
           <div className="hero-animate-group bg-transparent p-8 md:px-12 md:py-10">
-            <p className="mb-6 font-heading text-sm font-medium uppercase tracking-widest text-blue-500">
-              Studio · Product · Launch
-            </p>
-            <div
-              className="mb-6 flex justify-center gap-8 text-blue-400/50 md:justify-start"
-              aria-hidden
-            >
-              <Infinity className="h-5 w-5 animate-float" strokeWidth={1.5} />
-              <Rocket className="h-5 w-5 animate-float" style={{ animationDelay: "0.15s" }} strokeWidth={1.5} />
-              <Shield className="h-5 w-5 animate-float" style={{ animationDelay: "0.3s" }} strokeWidth={1.5} />
-              <Brain className="h-5 w-5 animate-float" style={{ animationDelay: "0.45s" }} strokeWidth={1.5} />
-            </div>
             <h1 className="font-heading text-[clamp(3rem,8vw,4rem)] font-bold leading-[1.05] tracking-[0.08em] text-white">
               <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-400 bg-clip-text text-transparent">
-                Your Name
+                Kai Tianlei Miao
               </span>
               <span className="mt-4 block text-[clamp(1.35rem,3.5vw,1.75rem)] font-semibold tracking-[0.06em] text-neutral-400">
                 <span className="text-neutral-500">I craft</span>
@@ -266,7 +252,7 @@ export function LandingPage() {
             </a>
           </nav>
           <p className="reveal-item text-xs text-neutral-600" data-delay="3">
-            © {year} Your Name. All rights reserved.
+            © {year} Kai Tianlei Miao. All rights reserved.
           </p>
         </div>
       </footer>

@@ -23,7 +23,7 @@ export function LandingPage() {
         <AnimatedShaderBackground className="pointer-events-none absolute inset-0 z-0 h-full min-h-[92vh] w-full opacity-80" />
 
         <div
-          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-neutral-950/50 via-neutral-950/75 to-neutral-950"
+          className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-neutral-950/25 via-neutral-950/45 to-neutral-950/70"
           aria-hidden
         />
 
@@ -72,7 +72,7 @@ export function LandingPage() {
         </svg>
 
         <div className="relative z-20 mx-auto w-full max-w-6xl">
-          <div className="hero-animate-group rounded-2xl border border-neutral-800/80 bg-neutral-950/75 p-8 shadow-xl backdrop-blur-md md:px-12 md:py-10">
+          <div className="hero-animate-group bg-transparent p-8 md:px-12 md:py-10">
             <p className="mb-6 font-heading text-sm font-medium uppercase tracking-widest text-blue-500">
               Studio · Product · Launch
             </p>
@@ -115,9 +115,6 @@ export function LandingPage() {
                 Collaborate
               </a>
             </div>
-            <p className="mt-8 text-sm text-neutral-500">
-              Scroll for capabilities &amp; testimonial — content stays readable over the shader.
-            </p>
           </div>
         </div>
       </header>

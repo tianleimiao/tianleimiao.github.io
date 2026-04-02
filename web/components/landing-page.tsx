@@ -85,7 +85,7 @@ export function LandingPage() {
               <Shield className="h-5 w-5 animate-float" style={{ animationDelay: "0.3s" }} strokeWidth={1.5} />
               <Brain className="h-5 w-5 animate-float" style={{ animationDelay: "0.45s" }} strokeWidth={1.5} />
             </div>
-            <h1 className="mb-8 font-heading text-[clamp(3rem,8vw,4rem)] font-bold leading-[1.05] tracking-[0.08em] text-white">
+            <h1 className="font-heading text-[clamp(3rem,8vw,4rem)] font-bold leading-[1.05] tracking-[0.08em] text-white">
               <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-400 bg-clip-text text-transparent">
                 Your Name
               </span>
@@ -95,26 +95,6 @@ export function LandingPage() {
                 <span className="text-neutral-500"> that convert.</span>
               </span>
             </h1>
-            <p className="mb-12 max-w-2xl text-[clamp(1.1rem,2vw,1.25rem)] leading-relaxed text-neutral-400">
-              Welcome to <strong className="text-white">your-app</strong> — a{" "}
-              <strong className="text-neutral-200">creative &amp; product</strong> studio that{" "}
-              <strong className="text-neutral-200">ships polished experiences</strong> from first sketch to production.
-              Agency precision, personal touch.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#hero-capabilities"
-                className="inline-flex items-center justify-center rounded-lg bg-blue-500 px-8 py-3.5 font-heading font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-blue-600"
-              >
-                View work
-              </a>
-              <a
-                href="#hero-voice"
-                className="inline-flex items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900/80 px-8 py-3.5 font-heading font-semibold tracking-wide text-neutral-200 shadow-sm transition-colors hover:border-blue-500/50"
-              >
-                Collaborate
-              </a>
-            </div>
           </div>
         </div>
       </header>
@@ -157,52 +137,36 @@ export function LandingPage() {
             strokeDasharray="5 22"
           />
         </svg>
-        <div className="hero-panel-animate reveal-section relative z-10 mx-auto w-full max-w-6xl" data-hero-on-view>
-          <p className="reveal-item mb-6 font-heading text-sm font-medium uppercase tracking-widest text-blue-500" data-delay="0">
-            Capabilities
-          </p>
-          <h2
-            className="reveal-item mb-6 font-heading text-[clamp(2.75rem,6vw,4rem)] font-bold leading-[1.08] tracking-[0.1em] text-white"
-            data-delay="1"
-          >
-            Build depth.
-            <br className="hidden sm:block" />
-            <span className="text-neutral-500">Ship clarity.</span>
-          </h2>
-          <p
-            className="reveal-item mb-14 max-w-2xl text-[clamp(1.1rem,2vw,1.35rem)] leading-relaxed text-neutral-400"
-            data-delay="2"
-          >
-            Holodex focus: the core offering center stage, supporting craft on the flanks — brand, product, and growth
-            in one studio rhythm.
-          </p>
-          <div className="holodex-track reveal-item" data-delay="3">
-            <article className="holodex-item flashlight-card p-8">
-              <div className="card-inner">
-                <h3 className="mb-3 font-heading text-xl font-bold tracking-wide text-white">Brand systems</h3>
-                <p className="text-sm leading-relaxed text-neutral-400">
-                  Visual language, typography, and motion guidelines that scale across touchpoints.
-                </p>
-              </div>
-            </article>
-            <article className="holodex-item flashlight-card p-8">
-              <div className="card-inner">
-                <h3 className="mb-3 font-heading text-xl font-bold tracking-wide text-white">Product UI</h3>
-                <p className="text-sm leading-relaxed text-neutral-400">
-                  High-fidelity interfaces, design systems, and handoff-ready specs for engineering teams.
-                </p>
-              </div>
-            </article>
-            <article className="holodex-item flashlight-card p-8">
-              <div className="card-inner">
-                <h3 className="mb-3 font-heading text-xl font-bold tracking-wide text-white">Launch &amp; growth</h3>
-                <p className="text-sm leading-relaxed text-neutral-400">
-                  Landing pages, campaigns, and iterative optimization once you are live.
-                </p>
-              </div>
-            </article>
+        <div
+          className="hero-panel-animate reveal-section relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-center py-16 md:min-h-0 md:py-24"
+          data-hero-on-view
+        >
+          <div className="flex flex-col gap-10 md:flex-row md:items-center md:gap-12 lg:gap-16">
+            {/* Left ~32%: swap placeholder for next/image or <img> when you have a portrait */}
+            <div
+              className="reveal-item w-full shrink-0 md:w-[32%] md:min-w-[240px] md:max-w-sm"
+              data-delay="0"
+            >
+              <div
+                className="aspect-[3/4] w-full rounded-2xl border border-dashed border-neutral-700/70 bg-neutral-900/30"
+                role="img"
+                aria-label="Portrait photo placeholder"
+              />
+            </div>
+            {/* Right: intro copy */}
+            <div className="reveal-item min-w-0 flex-1" data-delay="1">
+              <p className="mb-6 font-heading text-sm font-medium uppercase tracking-widest text-blue-500">
+                About
+              </p>
+              <p className="text-[clamp(1.05rem,2vw,1.2rem)] leading-relaxed text-neutral-400">
+                Welcome to <strong className="text-white">your-app</strong> — a{" "}
+                <strong className="text-neutral-200">creative &amp; product</strong> studio that{" "}
+                <strong className="text-neutral-200">ships polished experiences</strong> from first sketch to
+                production. Agency precision, personal touch.
+              </p>
+            </div>
           </div>
-          <p className="reveal-item mt-14" data-delay="4">
+          <p className="reveal-item mt-12 md:mt-16" data-delay="2">
             <a
               href="#hero-voice"
               className="inline-flex items-center font-heading text-sm font-semibold tracking-wide text-blue-500 hover:text-blue-400"

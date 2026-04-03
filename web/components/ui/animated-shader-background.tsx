@@ -1,9 +1,18 @@
 "use client";
 
-import { useEffect, useRef, type ComponentProps } from "react";
+import {
+  useRef,
+  useLayoutEffect,
+  useEffect,
+  type ComponentProps,
+} from "react";
 import * as THREE from "three";
 
 import { cn } from "@/lib/utils";
+
+/** Avoid useLayoutEffect SSR warning in Next.js while still running before paint on the client. */
+const useIsoLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 type AnimatedShaderBackgroundProps = ComponentProps<"div">;
 
@@ -80,15 +89,21 @@ export function AnimatedShaderBackground({
   children,
   ...props
 }: AnimatedShaderBackgroundProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const canvasHostRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+  useIsoLayoutEffect(() => {
+    const container = rootRef.current;
+    const canvasHost = canvasHostRef.current;
+    if (!container || !canvasHost) return;
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true,
+      powerPreference: "high-performance",
+    });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x000000, 0);
 
@@ -119,7 +134,7 @@ export function AnimatedShaderBackground({
       material.uniforms.iResolution.value.set(renderer.domElement.width, renderer.domElement.height);
     };
 
-    container.appendChild(canvas);
+    canvasHost.appendChild(canvas);
     syncSize();
 
     const ro = new ResizeObserver(() => syncSize());
@@ -127,19 +142,39 @@ export function AnimatedShaderBackground({
 
     let frameId = 0;
 
+    // Warm up GPU pipeline before the next paint to reduce “pop-in” after reload.
+    renderer.compile(scene, camera);
+    material.uniforms.iTime.value += 0.016;
+    renderer.render(scene, camera);
+
+    // Start the CSS sweep only after the first frame exists. Shader compile blocks the main thread
+    // for a long time; if the mask animation runs during that gap, it finishes before pixels show.
+    let revealRafOuter = 0;
+    let revealRafInner = 0;
+    const startReveal = () => {
+      canvasHost.classList.add("shader-reveal-canvas--active");
+    };
+    revealRafOuter = requestAnimationFrame(() => {
+      revealRafOuter = 0;
+      revealRafInner = requestAnimationFrame(startReveal);
+    });
+
     const animate = () => {
       frameId = requestAnimationFrame(animate);
       material.uniforms.iTime.value += 0.016;
       if (material.uniforms.iTime.value > 1e6) material.uniforms.iTime.value = 0;
       renderer.render(scene, camera);
     };
-    animate();
+    frameId = requestAnimationFrame(animate);
 
     return () => {
+      if (revealRafOuter) cancelAnimationFrame(revealRafOuter);
+      if (revealRafInner) cancelAnimationFrame(revealRafInner);
       cancelAnimationFrame(frameId);
+      canvasHost.classList.remove("shader-reveal-canvas--active");
       ro.disconnect();
-      if (canvas.parentNode === container) {
-        container.removeChild(canvas);
+      if (canvas.parentNode === canvasHost) {
+        canvasHost.removeChild(canvas);
       }
       geometry.dispose();
       material.dispose();
@@ -149,11 +184,21 @@ export function AnimatedShaderBackground({
 
   return (
     <div
-      ref={containerRef}
-      className={cn("relative min-h-0 w-full overflow-hidden", className)}
+      ref={rootRef}
+      className={cn(
+        "relative min-h-0 w-full overflow-hidden",
+        /* Layered CSS fallback until WebGL draws (avoids a flat patch during shader compile). */
+        "bg-[radial-gradient(ellipse_120%_80%_at_50%_-15%,rgba(37,99,235,0.28)_0%,transparent_52%),radial-gradient(ellipse_90%_70%_at_100%_90%,rgba(79,70,229,0.16)_0%,transparent_50%),rgb(10,10,10)]",
+        className
+      )}
       style={style}
       {...props}
     >
+      <div
+        ref={canvasHostRef}
+        className="shader-reveal-canvas pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden
+      />
       {children}
     </div>
   );

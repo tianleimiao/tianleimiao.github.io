@@ -49,7 +49,7 @@ html {
 
 .hero-animate-group {
   opacity: 0;
-  animation: hero-fade-in 3s ease-in 0.1s 1 forwards;
+  animation: hero-fade-in 3s ease-in 3s 1 forwards;
 }
 
 .hero-panel-animate {
@@ -57,7 +57,84 @@ html {
 }
 
 .hero-panel-animate.in-view {
-  animation: hero-fade-in 3s ease-in 0.1s 1 forwards;
+  animation: hero-fade-in 1.15s ease-out 0.05s 1 forwards;
+}
+
+/* Hero 2 / 3: faster staggered reveal than footer (scoped to hero-panel-animate) */
+.hero-panel-animate.reveal-section .reveal-item {
+  transition: opacity 0.48s ease-out, transform 0.48s ease-out, filter 0.48s ease-out;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="0"] {
+  transition-delay: 0ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="1"] {
+  transition-delay: 40ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="2"] {
+  transition-delay: 80ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="3"] {
+  transition-delay: 120ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="4"] {
+  transition-delay: 160ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="5"] {
+  transition-delay: 200ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="6"] {
+  transition-delay: 240ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="7"] {
+  transition-delay: 280ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="8"] {
+  transition-delay: 320ms;
+}
+
+/* WebGL hero: diagonal sweep — animation starts in JS after first GPU frame (see animated-shader-background). */
+@media (prefers-reduced-motion: no-preference) {
+  .shader-reveal-canvas {
+    isolation: isolate;
+    -webkit-mask-image: linear-gradient(
+      135deg,
+      rgb(0, 0, 0) 0%,
+      rgb(0, 0, 0) 36%,
+      rgba(0, 0, 0, 0) 64%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      135deg,
+      rgb(0, 0, 0) 0%,
+      rgb(0, 0, 0) 36%,
+      rgba(0, 0, 0, 0) 64%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-size: 420% 420%;
+    mask-size: 420% 420%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 100% 0%;
+    mask-position: 100% 0%;
+  }
+
+  .shader-reveal-canvas.shader-reveal-canvas--active {
+    animation: shader-diagonal-reveal 4s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shader-reveal-canvas {
+    -webkit-mask: none;
+    mask: none;
+  }
+}
+
+@keyframes shader-diagonal-reveal {
+  to {
+    -webkit-mask-position: 0% 100%;
+    mask-position: 0% 100%;
+  }
 }
 
 @keyframes beam-line-flow {

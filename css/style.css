@@ -32,7 +32,7 @@ body {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
-/* Hero: animate all children at once — 3s, 0.1s delay, ease-in, once */
+/* Hero: animate all children at once — 3s duration, 3s delay, ease-in, once */
 @keyframes hero-fade-in {
   from {
     opacity: 0;
@@ -46,7 +46,7 @@ body {
 
 .hero-animate-group {
   opacity: 0;
-  animation: hero-fade-in 3s ease-in 0.1s 1 forwards;
+  animation: hero-fade-in 3s ease-in 3s 1 forwards;
 }
 
 /* Below-fold heroes: same motion when scrolled into view */
@@ -55,7 +55,39 @@ body {
 }
 
 .hero-panel-animate.in-view {
-  animation: hero-fade-in 3s ease-in 0.1s 1 forwards;
+  animation: hero-fade-in 1.15s ease-out 0.05s 1 forwards;
+}
+
+/* Hero 2 / 3: faster reveal than footer */
+.hero-panel-animate.reveal-section .reveal-item {
+  transition: opacity 0.48s ease-out, transform 0.48s ease-out, filter 0.48s ease-out;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="0"] {
+  transition-delay: 0ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="1"] {
+  transition-delay: 40ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="2"] {
+  transition-delay: 80ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="3"] {
+  transition-delay: 120ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="4"] {
+  transition-delay: 160ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="5"] {
+  transition-delay: 200ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="6"] {
+  transition-delay: 240ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="7"] {
+  transition-delay: 280ms;
+}
+.hero-panel-animate.reveal-section .reveal-item[data-delay="8"] {
+  transition-delay: 320ms;
 }
 
 /* Beam along vertical lines */

@@ -52,6 +52,12 @@ html {
   animation: hero-fade-in 3s ease-in 4s 1 forwards;
 }
 
+/* First-load intro only; skip when returning from device preview (same flag as shader skip) */
+.hero-intro-skip-enter .hero-animate-group {
+  opacity: 1;
+  animation: none;
+}
+
 /* /embed (device-preview iframe): avoid scroll-locked intro + IO-gated opacity so all sections stay visible */
 .embed-preview .hero-animate-group {
   opacity: 1;

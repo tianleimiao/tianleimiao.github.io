@@ -1,9 +1,28 @@
 "use client";
 
 import { Monitor, Smartphone, Tablet } from "lucide-react";
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import {
+  createContext,
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { cn } from "@/lib/utils";
+
+export type DeviceDesktopIntroContextValue = {
+  desktopIntroCompleted: boolean;
+  markDesktopIntroComplete: () => void;
+};
+
+export const DeviceDesktopIntroContext = createContext<DeviceDesktopIntroContextValue | null>(null);
+
+export function useDeviceDesktopIntro() {
+  return useContext(DeviceDesktopIntroContext);
+}
 
 const STORAGE_KEY = "device-preview-mode";
 
@@ -91,6 +110,19 @@ function DevicePreviewInner({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<DeviceMode>("pc");
   const [mounted, setMounted] = useState(false);
   const [barVisible, setBarVisible] = useState(false);
+  const [desktopIntroCompleted, setDesktopIntroCompleted] = useState(false);
+
+  const markDesktopIntroComplete = useCallback(() => {
+    setDesktopIntroCompleted(true);
+  }, []);
+
+  const desktopIntroValue = useMemo<DeviceDesktopIntroContextValue>(
+    () => ({
+      desktopIntroCompleted,
+      markDesktopIntroComplete,
+    }),
+    [desktopIntroCompleted, markDesktopIntroComplete]
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -127,7 +159,7 @@ function DevicePreviewInner({ children }: { children: React.ReactNode }) {
 
   if (mode === "phone") {
     return (
-      <>
+      <DeviceDesktopIntroContext.Provider value={desktopIntroValue}>
         <DevicePreviewBar mode={mode} onChange={persistMode} visible={barVisible} />
         <div className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-neutral-950 pt-14">
           <div
@@ -137,13 +169,13 @@ function DevicePreviewInner({ children }: { children: React.ReactNode }) {
             <iframe title="Phone preview" src={embedUrl} className="h-full w-full border-0 bg-neutral-950" />
           </div>
         </div>
-      </>
+      </DeviceDesktopIntroContext.Provider>
     );
   }
 
   if (mode === "tablet") {
     return (
-      <>
+      <DeviceDesktopIntroContext.Provider value={desktopIntroValue}>
         <DevicePreviewBar mode={mode} onChange={persistMode} visible={barVisible} />
         <div className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-neutral-950 pt-14">
           <div
@@ -153,15 +185,15 @@ function DevicePreviewInner({ children }: { children: React.ReactNode }) {
             <iframe title="Tablet preview" src={embedUrl} className="h-full w-full border-0 bg-neutral-950" />
           </div>
         </div>
-      </>
+      </DeviceDesktopIntroContext.Provider>
     );
   }
 
   return (
-    <>
+    <DeviceDesktopIntroContext.Provider value={desktopIntroValue}>
       <DevicePreviewBar mode={mode} onChange={persistMode} visible={barVisible} />
       {children}
-    </>
+    </DeviceDesktopIntroContext.Provider>
   );
 }
 

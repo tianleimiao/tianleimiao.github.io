@@ -1,11 +1,13 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
+import { DeviceDesktopIntroContext } from "@/components/device-preview";
 import { LandingPageInner } from "@/components/landing-page-inner";
+import type { ShaderAnimationProps } from "@/components/ui/shader-animation";
 
-const ShaderAnimation = dynamic(
+const ShaderAnimation = dynamic<ShaderAnimationProps>(
   () => import("@/components/ui/shader-animation").then((m) => m.ShaderAnimation),
   {
     ssr: false,
@@ -14,18 +16,31 @@ const ShaderAnimation = dynamic(
 );
 
 export function LandingPage() {
-  const [introComplete, setIntroComplete] = useState(false);
-  const onIntroEnd = useCallback(() => setIntroComplete(true), []);
+  const introCtx = useContext(DeviceDesktopIntroContext);
+  const forceSkipIntro = introCtx?.desktopIntroCompleted ?? false;
+  const markDesktopIntroComplete = introCtx?.markDesktopIntroComplete ?? (() => {});
+
+  const [introComplete, setIntroComplete] = useState(() => introCtx?.desktopIntroCompleted ?? false);
+
+  const onIntroEnd = useCallback(() => {
+    setIntroComplete(true);
+    markDesktopIntroComplete();
+  }, [markDesktopIntroComplete]);
 
   useEffect(() => {
+    if (forceSkipIntro) return;
     const id = window.setTimeout(() => setIntroComplete(true), 6000);
     return () => window.clearTimeout(id);
-  }, []);
+  }, [forceSkipIntro]);
 
   return (
     <>
-      <ShaderAnimation onIntroEnd={onIntroEnd} />
-      <LandingPageInner embedPreview={false} introComplete={introComplete} />
+      <ShaderAnimation forceSkipIntro={forceSkipIntro} onIntroEnd={onIntroEnd} />
+      <LandingPageInner
+        embedPreview={false}
+        introComplete={introComplete}
+        skipHeroEntranceDelay={forceSkipIntro}
+      />
     </>
   );
 }

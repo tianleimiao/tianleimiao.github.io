@@ -5,12 +5,14 @@ import * as THREE from "three";
 
 import { cn } from "@/lib/utils";
 
-type ShaderAnimationProps = {
+export type ShaderAnimationProps = {
   /** Fires when the intro overlay is removed (~4.5s) or immediately if reduced-motion skips it. */
   onIntroEnd?: () => void;
+  /** When true (e.g. returning to desktop after device preview), skip overlay and WebGL — same as reduced-motion. */
+  forceSkipIntro?: boolean;
 };
 
-export function ShaderAnimation({ onIntroEnd }: ShaderAnimationProps) {
+export function ShaderAnimation({ onIntroEnd, forceSkipIntro = false }: ShaderAnimationProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
     camera: THREE.Camera;
@@ -30,8 +32,14 @@ export function ShaderAnimation({ onIntroEnd }: ShaderAnimationProps) {
       setSkipIntro(true);
       setIsVisible(false);
       onIntroEnd?.();
+      return;
     }
-  }, [onIntroEnd]);
+    if (forceSkipIntro) {
+      setSkipIntro(true);
+      setIsVisible(false);
+      onIntroEnd?.();
+    }
+  }, [onIntroEnd, forceSkipIntro]);
 
   useEffect(() => {
     if (skipIntro) return;

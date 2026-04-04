@@ -21,10 +21,12 @@ const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export type LandingPageInnerProps =
   | { embedPreview: true }
-  | { embedPreview: false; introComplete: boolean };
+  | { embedPreview: false; introComplete: boolean; skipHeroEntranceDelay?: boolean };
 
 export function LandingPageInner(props: LandingPageInnerProps) {
   const introDone = props.embedPreview ? true : props.introComplete;
+  const skipHeroEntranceDelay =
+    props.embedPreview || (!props.embedPreview && Boolean(props.skipHeroEntranceDelay));
 
   useLandingEffects();
 
@@ -35,7 +37,10 @@ export function LandingPageInner(props: LandingPageInnerProps) {
       {/* Hero 1 — shader + full intro (readable panel so content stays visible) */}
       <header
         id="hero-intro"
-        className="relative flex min-h-[92vh] flex-col justify-center overflow-hidden border-b border-neutral-800/80 bg-neutral-950 px-6 shadow-sm md:px-12 lg:px-20"
+        className={cn(
+          "relative flex min-h-[92vh] flex-col justify-center overflow-hidden border-b border-neutral-800/80 bg-neutral-950 px-6 shadow-sm md:px-12 lg:px-20",
+          skipHeroEntranceDelay && "hero-intro-skip-enter"
+        )}
       >
         {introDone ? (
           <AnimatedShaderBackground className="pointer-events-none absolute inset-0 z-0 h-full min-h-[92vh] w-full opacity-80" />

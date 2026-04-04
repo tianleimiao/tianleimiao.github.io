@@ -1,26 +1,58 @@
-"use client";
+"use client"
 
-import { useEffect, useRef, type ComponentProps } from "react";
-import * as THREE from "three";
+import { useEffect, useRef, useState } from "react"
+import * as THREE from "three"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-type ShaderAnimationProps = ComponentProps<"div">;
+export function ShaderAnimation() {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const sceneRef = useRef<{
+    camera: THREE.Camera
+    scene: THREE.Scene
+    renderer: THREE.WebGLRenderer
+    uniforms: any
+    animationId: number
+  } | null>(null)
 
-export function ShaderAnimation({ className, style, ...props }: ShaderAnimationProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true)
+  const [isFadingOut, setIsFadingOut] = useState(false)
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    // Lock scroll during animation
+    document.body.style.overflow = "hidden"
 
-    const container = containerRef.current;
+    // Start fade out at 3 seconds
+    const fadeTimer = setTimeout(() => {
+      setIsFadingOut(true)
+    }, 3000)
 
+    // Unmount at 4.5 seconds (allowing 1.5s for the fade transition)
+    const hideTimer = setTimeout(() => {
+      setIsVisible(false)
+      document.body.style.overflow = "" // Restore scroll
+    }, 4500)
+
+    return () => {
+      clearTimeout(fadeTimer)
+      clearTimeout(hideTimer)
+      document.body.style.overflow = ""
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!isVisible || !containerRef.current) return
+
+    const container = containerRef.current
+
+    // Vertex shader
     const vertexShader = `
       void main() {
         gl_Position = vec4( position, 1.0 );
       }
-    `;
+    `
 
+    // Fragment shader
     const fragmentShader = `
       #define TWO_PI 6.2831853072
       #define PI 3.14159265359
@@ -40,82 +72,106 @@ export function ShaderAnimation({ className, style, ...props }: ShaderAnimationP
             color[j] += lineWidth*float(i*i) / abs(fract(t - 0.01*float(j)+float(i)*0.01)*5.0 - length(uv) + mod(uv.x+uv.y, 0.2));
           }
         }
-
+        
         gl_FragColor = vec4(color[0],color[1],color[2],1.0);
       }
-    `;
+    `
 
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    // Initialize Three.js scene
+    const camera = new THREE.Camera()
+    camera.position.z = 1
 
-    const scene = new THREE.Scene();
-    const geometry = new THREE.PlaneGeometry(2, 2);
+    const scene = new THREE.Scene()
+    const geometry = new THREE.PlaneGeometry(2, 2)
 
     const uniforms = {
-      time: { value: 1.0 },
-      resolution: { value: new THREE.Vector2() },
-    };
+      time: { type: "f", value: 1.0 },
+      resolution: { type: "v2", value: new THREE.Vector2() },
+    }
 
     const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader,
-      fragmentShader,
-    });
+      uniforms: uniforms,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+    })
 
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+    const mesh = new THREE.Mesh(geometry, material)
+    scene.add(mesh)
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 1);
+    const renderer = new THREE.WebGLRenderer({ antialias: true })
+    renderer.setPixelRatio(window.devicePixelRatio)
 
-    container.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement)
 
+    // Handle window resize
     const onWindowResize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      renderer.setSize(width, height);
-      uniforms.resolution.value.x = renderer.domElement.width;
-      uniforms.resolution.value.y = renderer.domElement.height;
-    };
+      if (!container) return
+      const width = container.clientWidth
+      const height = container.clientHeight
+      renderer.setSize(width, height)
+      uniforms.resolution.value.x = renderer.domElement.width
+      uniforms.resolution.value.y = renderer.domElement.height
+    }
 
-    onWindowResize();
-    window.addEventListener("resize", onWindowResize, false);
+    // Initial resize
+    onWindowResize()
+    window.addEventListener("resize", onWindowResize, false)
 
-    let animationId = 0;
-
+    // Animation loop
     const animate = () => {
-      animationId = requestAnimationFrame(animate);
-      uniforms.time.value += 0.05;
-      // Avoid huge float drift / unstable fragment output after long sessions
-      if (uniforms.time.value > 20000) uniforms.time.value = 1;
-      renderer.render(scene, camera);
-    };
+      const animationId = requestAnimationFrame(animate)
+      uniforms.time.value += 0.05
+      renderer.render(scene, camera)
 
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", onWindowResize);
-      cancelAnimationFrame(animationId);
-
-      if (container.contains(renderer.domElement)) {
-        container.removeChild(renderer.domElement);
+      if (sceneRef.current) {
+        sceneRef.current.animationId = animationId
       }
-      renderer.dispose();
-      geometry.dispose();
-      material.dispose();
-    };
-  }, []);
+    }
+
+    // Store scene references for cleanup
+    sceneRef.current = {
+      camera,
+      scene,
+      renderer,
+      uniforms,
+      animationId: 0,
+    }
+
+    // Start animation
+    animate()
+
+    // Cleanup function
+    return () => {
+      window.removeEventListener("resize", onWindowResize)
+
+      if (sceneRef.current) {
+        cancelAnimationFrame(sceneRef.current.animationId)
+
+        if (container && sceneRef.current.renderer.domElement) {
+          if (container.contains(sceneRef.current.renderer.domElement)) {
+             container.removeChild(sceneRef.current.renderer.domElement)
+          }
+        }
+
+        sceneRef.current.renderer.dispose()
+        geometry.dispose()
+        material.dispose()
+      }
+    }
+  }, [isVisible])
+
+  if (!isVisible) return null
 
   return (
     <div
       ref={containerRef}
-      className={cn("w-full h-screen", className)}
+      className={cn(
+        "fixed inset-0 z-[9999] bg-black transition-opacity duration-[1500ms] ease-in-out",
+        isFadingOut ? "opacity-0 pointer-events-none" : "opacity-100"
+      )}
       style={{
-        background: "#000",
         overflow: "hidden",
-        ...style,
       }}
-      {...props}
     />
-  );
+  )
 }

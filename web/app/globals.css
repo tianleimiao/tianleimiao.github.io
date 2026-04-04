@@ -49,7 +49,7 @@ html {
 
 .hero-animate-group {
   opacity: 0;
-  animation: hero-fade-in 3s ease-in 3s 1 forwards;
+  animation: hero-fade-in 3s ease-in 4s 1 forwards;
 }
 
 .hero-panel-animate {

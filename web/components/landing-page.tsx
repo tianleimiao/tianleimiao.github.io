@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useLandingEffects } from "@/hooks/use-landing-effects";
 import { AnimatedShaderBackground } from "@/components/ui/animated-shader-background";
+import { ShaderAnimation } from "@/components/ui/shader-animation";
 import { Brain, Infinity, Rocket, Shield } from "lucide-react";
 import { SvgBeamDefs } from "@/components/svg-beam-defs";
 import { WordRotator } from "@/components/word-rotator";
@@ -15,6 +16,7 @@ export function LandingPage() {
 
   return (
     <>
+      <ShaderAnimation />
       <SvgBeamDefs />
 
       {/* Hero 1 — shader + full intro (readable panel so content stays visible) */}

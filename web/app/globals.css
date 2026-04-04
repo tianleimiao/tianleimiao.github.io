@@ -52,6 +52,26 @@ html {
   animation: hero-fade-in 3s ease-in 4s 1 forwards;
 }
 
+/* /embed (device-preview iframe): avoid scroll-locked intro + IO-gated opacity so all sections stay visible */
+.embed-preview .hero-animate-group {
+  opacity: 1;
+  animation: none;
+}
+
+.embed-preview .hero-panel-animate {
+  opacity: 1;
+}
+
+.embed-preview .hero-panel-animate.in-view {
+  animation: none;
+}
+
+.embed-preview .reveal-item {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
 .hero-panel-animate {
   opacity: 0;
 }

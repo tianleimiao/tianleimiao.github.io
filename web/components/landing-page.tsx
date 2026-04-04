@@ -250,30 +250,20 @@ export function LandingPage() {
           <path className="noodle-path" vectorEffect="non-scaling-stroke" d="M 200 55 C 130 12 70 88 0 45" />
         </svg>
         <div className="hero-panel-animate reveal-section relative z-10 mx-auto w-full max-w-4xl" data-hero-on-view>
-          <p className="reveal-item mb-8 font-heading text-sm font-semibold uppercase tracking-widest text-blue-500" data-delay="0">
-            Testimonial
-          </p>
           <blockquote
             className="reveal-item mb-12 font-heading text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.15] tracking-[0.08em] text-white"
-            data-delay="1"
+            data-delay="0"
           >
-            “Rare mix of taste and execution. They treated our launch like their own — clear process, fast iterations,
-            and a dark-mode-ready product we are proud to show investors.”
+            Ideas are table stakes — shipped work is what compounds. The AI wave isn&apos;t just smarter models; it&apos;s
+            that the gap between intent and something real in the wild has never been cheaper to close. I optimize for
+            that bias to ship.
           </blockquote>
-          <footer className="reveal-item" data-delay="2">
+          <footer className="reveal-item" data-delay="1">
             <cite className="not-italic text-[clamp(1rem,2vw,1.15rem)] text-neutral-400">
-              <span className="font-heading font-semibold tracking-wide text-white">Alex Rivera</span>
-              · Founder, Northwind Labs
+              <span className="font-heading font-semibold tracking-wide text-white">Tianlei (Kai) Miao</span>
+              · AI-native builder
             </cite>
           </footer>
-          <p className="reveal-item mt-14" data-delay="3">
-            <a
-              href="#footer"
-              className="inline-flex items-center font-heading text-sm font-semibold tracking-wide text-blue-500 hover:text-blue-400"
-            >
-              Footer &amp; links →
-            </a>
-          </p>
         </div>
       </section>
 
@@ -284,10 +274,11 @@ export function LandingPage() {
         <div className="reveal-section mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="reveal-item mb-3 font-heading text-2xl font-bold tracking-[0.12em] text-white" data-delay="0">
-              your-app
+              Tianlei(Kai) Miao
             </p>
             <p className="reveal-item max-w-md text-sm text-neutral-500" data-delay="1">
-              Next.js + WebGL hero. Replace copy and links. Deploy static export to GitHub Pages.
+              AI · Product · Launch — I craft pages, products, and marketing that convert. Personal showcase: Next.js,
+              WebGL shaders, static export on GitHub Pages.
             </p>
           </div>
           <nav className="reveal-item flex flex-wrap gap-8" data-delay="2" aria-label="Footer">
@@ -295,12 +286,17 @@ export function LandingPage() {
               Intro
             </a>
             <a href="#hero-capabilities" className="text-sm text-neutral-400 transition-colors hover:text-blue-500">
-              Work
+              About
             </a>
             <a href="#hero-voice" className="text-sm text-neutral-400 transition-colors hover:text-blue-500">
-              Voice
+              Quote
             </a>
-            <a href="https://github.com" className="text-sm text-neutral-400 transition-colors hover:text-blue-500">
+            <a
+              href="https://github.com/tianleimiao/PersonalPage"
+              className="text-sm text-neutral-400 transition-colors hover:text-blue-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub
             </a>
             <a href="mailto:hello@example.com" className="text-sm text-neutral-400 transition-colors hover:text-blue-500">

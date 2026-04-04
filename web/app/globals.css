@@ -433,6 +433,60 @@ html {
   animation: gradient-x 8s ease infinite;
 }
 
+/* Device preview toolbar — align with hero intro (#hero-intro): left edge = h1 name; vertical = tagline row */
+:root {
+  --device-preview-left: calc(1.5rem + 2rem + max(0px, (100vw - 3rem - 72rem) / 2));
+  /* Centers toolbar with "AI · Product · Launch" (top-6, text-xs line ~1rem) */
+  --device-preview-top: calc(1.5rem + 0.5rem - 0.875rem);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --device-preview-left: calc(3rem + 3rem + max(0px, (100vw - 6rem - 72rem) / 2));
+    /* top-10 + half text-sm line - half toolbar */
+    --device-preview-top: calc(2.5rem + 0.625rem - 0.875rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --device-preview-left: calc(5rem + 3rem + max(0px, (100vw - 10rem - 72rem) / 2));
+  }
+}
+
+/* Device preview toolbar — rotating edge glow */
+@keyframes device-preview-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.device-preview-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(59, 130, 246, 0.4) 52deg,
+    rgba(59, 130, 246, 0.1) 118deg,
+    transparent 228deg
+  );
+  animation: device-preview-ring-spin 4.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .device-preview-ring {
+    animation: none;
+    background: linear-gradient(
+      145deg,
+      rgba(59, 130, 246, 0.22) 0%,
+      rgba(59, 130, 246, 0.06) 45%,
+      transparent 70%
+    );
+  }
+}
+
 @keyframes float {
   0%,
   100% {

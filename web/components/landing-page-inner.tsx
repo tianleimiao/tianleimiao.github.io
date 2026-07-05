@@ -20,17 +20,16 @@ const year = new Date().getFullYear();
 const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const navItems = [
-  { label: "Experience", href: "#build" },
-  { label: "Path", href: "#path" },
+  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
 ];
 
 const sidebarItems = [
-  { label: "Experience", href: "#build", id: "build" },
-  { label: "My Path", href: "#path", id: "path" },
+  { label: "Experience", href: "#experience", id: "experience" },
   { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Proof", href: "#proof", id: "proof" },
+  { label: "Education", href: "#education", id: "education" },
   { label: "Skills & Stack", href: "#skills", id: "skills" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
@@ -68,24 +67,56 @@ const experienceItems = [
     title: "Consultant & CAS Team Lead, Autonomy",
     meta: "RH Marine · Rotterdam area, Netherlands",
     text: "Leads the Collision Avoidance System team and full product lifecycle across development, CI/CD, testing, deployment, monitoring and planning.",
+    bullets: [
+      "Standardized evaluation frameworks and scenario-based testing before each release.",
+      "Built AI-assisted internal tooling and RAG over proprietary code/docs, including a JavaScript visualization tool used as a standard autonomy-team workflow.",
+      "Improved algorithm performance and system robustness; contributed to a full-lifecycle cybersecurity project using CAS as case study.",
+    ],
   },
   {
     eyebrow: "Oct 2023 - Jul 2025",
     title: "Consultant, Autonomous Systems",
     meta: "RH Marine · real-time C++ · customer validation",
     text: "Migrated collision-avoidance systems from research prototype to industrial-grade real-time C++, with customer requirements, integration and vessel commissioning support.",
+    bullets: [
+      "Redesigned risk and COLREGs compliance models for robustness in dense traffic.",
+      "Supported pilot validation and on-board commissioning for integration, acceptance testing and handover.",
+      "Deployed multi-objective optimization and radar-based GPS-denied localization into real-time, safety-critical production systems.",
+      "Built a Python RAG assistant over proprietary code and technical documentation.",
+    ],
   },
   {
     eyebrow: "Oct 2019 - Oct 2023",
     title: "PhD Researcher, Autonomous Systems",
     meta: "KU Leuven / RH Marine · MSCA Fellow",
     text: "Researched autonomous sailing, collision avoidance, improved Hybrid A*, radar-AIS sensor fusion, PMBM tracking and quantitative evaluation.",
+    bullets: [
+      "PhD thesis: Efficient Autonomous Sailing System in Real-life Scenarios.",
+      "Published real-time collision avoidance and radar-AIS sensor fusion work in Ocean Engineering.",
+      "Ported collision-avoidance algorithm to ROS C++ during MARIN secondment and validated in simulator and real-ship experiments.",
+      "Designed quantitative evaluation using baseline comparison and metrics including GOSPA.",
+    ],
   },
   {
-    eyebrow: "Founder work",
-    title: "Helperhub, Lensdy and contracting",
-    meta: "Founder · sole engineer · commercial delivery",
-    text: "Built Helperhub from zero, co-founded Lensdy, integrated AI virtual try-on, and ran renovation projects end-to-end in the Netherlands.",
+    eyebrow: "Ongoing / Apr 2023 - Present",
+    title: "Founder Work: Helperhub and Lensdy",
+    meta: "Founder · sole engineer · AI e-commerce",
+    text: "Built Helperhub from zero, co-founded Lensdy, integrated AI virtual try-on and led early Dutch-market business development.",
+    bullets: [
+      "Built Helperhub solo in 3-4 months with Django, React, PostgreSQL, Docker and AWS.",
+      "Owned commercial cold start by narrowing to airport transfers, recruiting supply first and hand-building provider profiles.",
+      "Integrated AI-powered virtual try-on into Lensdy's live e-commerce workflow.",
+    ],
+  },
+  {
+    eyebrow: "3+ years",
+    title: "Renovation Contractor, Self-Employed",
+    meta: "Netherlands · primarily Dutch Chinese clients",
+    text: "Ran renovation projects end-to-end alongside engineering roles.",
+    bullets: [
+      "Owned quoting, supplier coordination, on-site delivery and customer communication.",
+      "Built Dutch Chinese community market knowledge that informed Helperhub and building-materials procurement product thinking.",
+    ],
   },
 ];
 
@@ -130,22 +161,53 @@ const projects = [
 
 const proofItems = ["3+ yrs safety-critical software", "1.5+ yrs GenAI / agents", "3-4 months to ship Helperhub", "€200+/month service fees", "3+ yrs contracting", "3-5 vessel deployments / year"];
 
+const educationItems = [
+  {
+    degree: "PhD, Autonomous Systems (Autonomous Sailing)",
+    institution: "KU Leuven, Belgium",
+    years: "2019 - 2023",
+    details: "Thesis on efficient autonomous sailing in real-life scenarios, with advanced multi-object tracking and collision-avoidance algorithms.",
+  },
+  {
+    degree: "MSc, Maritime Engineering",
+    institution: "KTH Stockholm & NTNU Trondheim",
+    years: "2017 - 2019",
+    details: "Nordic Joint Master in maritime engineering.",
+  },
+  {
+    degree: "BEng, Naval Architecture & Ocean Engineering",
+    institution: "Zhejiang University, China",
+    years: "2013 - 2017",
+    details: "GPA 3.89/4.0, Outstanding Graduate, National Scholarship and Lixin Tang Scholarship.",
+  },
+  {
+    degree: "Exchange Semester",
+    institution: "TU Munich",
+    years: "2016",
+    details: "Exchange semester during undergraduate study.",
+  },
+];
+
 const skillGroups = [
   {
     title: "AI / Product",
-    items: ["LLMs & agents", "RAG", "Evaluation frameworks", "Guardrails", "Human-in-the-loop", "Cursor"],
+    items: ["LLMs & agents", "RAG", "Agentic workflows", "Evaluation frameworks & guardrails", "Human-in-the-loop", "Workflow automation", "Prompt engineering", "Document intelligence", "Agentic coding with Cursor"],
   },
   {
     title: "Engineering",
-    items: ["Python", "C++", "JavaScript / React", "Django", "PostgreSQL", "Docker", "CI/CD"],
+    items: ["Python", "C++ real-time systems", "JavaScript / React", "Django", "PostgreSQL", "Docker", "CI/CD", "Azure DevOps", "AWS", "Railway", "Git"],
   },
   {
     title: "Autonomy / Systems",
-    items: ["Sensor fusion", "Optimization", "Probabilistic modelling", "Bayesian inference", "State-space models"],
+    items: ["Sensor fusion", "Radar / AIS", "Collision avoidance", "COLREGs", "Optimization", "Probabilistic modelling", "Bayesian inference", "State-space models"],
   },
   {
     title: "Delivery / Commercial",
-    items: ["Requirements to deployment", "Scenario-based acceptance", "Customer validation", "Marketplace cold-start", "Quoting to delivery"],
+    items: ["Requirements to deployment", "Scenario-based acceptance", "Technical demonstrations", "On-board commissioning", "Customer validation", "Marketplace cold-start", "Quoting to delivery"],
+  },
+  {
+    title: "Languages",
+    items: ["Chinese (native)", "English (full professional)"],
   },
 ];
 
@@ -171,9 +233,9 @@ export function LandingPageInner(props: LandingPageInnerProps) {
         <div className="portfolio-page-glow pointer-events-none absolute inset-0" aria-hidden />
         <PersonalManifesto />
         <WhatIBuild />
-        <ExperienceTimeline />
         <SelectedProjects />
         <ProofMetrics />
+        <EducationSection />
         <SkillsStack />
       </main>
 
@@ -409,7 +471,7 @@ function PersonalManifesto() {
 
 function WhatIBuild() {
   return (
-    <SectionShell id="build" eyebrow="Work Experience" title="Applied AI, autonomous systems and production delivery.">
+    <SectionShell id="experience" eyebrow="Work Experience" title="Applied AI, autonomous systems and production delivery.">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((item, index) => (
           <article key={item.title} className="flashlight-card reveal-item min-h-52 p-6" data-delay={index % 6}>
@@ -423,27 +485,30 @@ function WhatIBuild() {
           </article>
         ))}
       </div>
-    </SectionShell>
-  );
-}
 
-function ExperienceTimeline() {
-  return (
-    <SectionShell id="path" eyebrow="My path" title="From autonomous sailing research to deployed AI products.">
-      <div className="grid gap-10 lg:grid-cols-[0.7fr_1fr] lg:items-start">
-        <div className="reveal-item" data-delay="0">
-          <PortraitCard />
-        </div>
-        <div className="portfolio-timeline">
-          {experienceItems.map((item, index) => (
-            <article key={item.title} className="portfolio-timeline-item reveal-item" data-delay={index + 1}>
-              <p className="text-xs font-medium uppercase tracking-[0.24em] text-blue-400">{item.eyebrow}</p>
-              <h3 className="mt-2 font-heading text-2xl font-semibold tracking-wide text-white">{item.title}</h3>
-              <p className="mt-1 text-sm text-neutral-500">{item.meta}</p>
-              <p className="mt-4 text-sm leading-6 text-neutral-400">{item.text}</p>
-            </article>
-          ))}
-        </div>
+      <div className="mt-16 grid gap-6">
+        {experienceItems.map((item, index) => (
+          <article key={item.title} className="portfolio-experience-card reveal-item" data-delay={index % 6}>
+            <div className="grid gap-5 lg:grid-cols-[0.32fr_1fr]">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.24em] text-blue-400">{item.eyebrow}</p>
+                <h3 className="mt-3 font-heading text-2xl font-semibold tracking-wide text-white">{item.title}</h3>
+                <p className="mt-2 text-sm text-neutral-500">{item.meta}</p>
+              </div>
+              <div>
+                <p className="text-sm leading-6 text-neutral-300">{item.text}</p>
+                <ul className="mt-5 space-y-3">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet} className="flex gap-3 text-sm leading-6 text-neutral-400">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300/80" aria-hidden />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </SectionShell>
   );
@@ -491,6 +556,27 @@ function ProofMetrics() {
         </div>
       </div>
     </section>
+  );
+}
+
+function EducationSection() {
+  return (
+    <SectionShell id="education" eyebrow="Education" title="Autonomous systems, maritime engineering and naval architecture.">
+      <div className="grid gap-4 md:grid-cols-2">
+        {educationItems.map((item, index) => (
+          <article key={`${item.degree}-${item.institution}`} className="reveal-item rounded-3xl border border-neutral-800/80 bg-neutral-900/45 p-6" data-delay={index}>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p className="text-xs font-medium uppercase tracking-[0.24em] text-blue-400">{item.years}</p>
+              <span className="rounded-full border border-neutral-700/80 px-3 py-1 text-xs text-neutral-400">
+                {item.institution}
+              </span>
+            </div>
+            <h3 className="mt-5 font-heading text-xl font-semibold tracking-wide text-white">{item.degree}</h3>
+            <p className="mt-4 text-sm leading-6 text-neutral-400">{item.details}</p>
+          </article>
+        ))}
+      </div>
+    </SectionShell>
   );
 }
 

@@ -314,6 +314,88 @@ html {
   transform: scale(0.9) rotateY(-8deg);
 }
 
+.portfolio-page-glow {
+  background:
+    radial-gradient(circle at 15% 8%, rgba(37, 99, 235, 0.14), transparent 28rem),
+    radial-gradient(circle at 88% 28%, rgba(79, 70, 229, 0.12), transparent 30rem),
+    linear-gradient(180deg, rgba(10, 10, 10, 0), rgba(10, 10, 10, 0.72) 55%, rgba(10, 10, 10, 0));
+}
+
+.portfolio-section-shell {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(38, 38, 38, 0.8);
+  padding: 7rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .portfolio-section-shell {
+    padding: 8rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-section-shell {
+    padding: 9rem 5rem;
+  }
+}
+
+.portfolio-timeline {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+.portfolio-timeline::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.75rem;
+  top: 0.75rem;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(59, 130, 246, 0.7), rgba(38, 38, 38, 0.15));
+}
+
+.portfolio-timeline-item {
+  position: relative;
+  margin-left: 2rem;
+  border: 1px solid rgba(38, 38, 38, 0.85);
+  border-radius: 1.5rem;
+  background: rgba(23, 23, 23, 0.58);
+  padding: 1.5rem;
+  box-shadow: 0 24px 80px -48px rgba(59, 130, 246, 0.5);
+}
+
+.portfolio-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.69rem;
+  top: 1.75rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  border: 1px solid rgba(147, 197, 253, 0.75);
+  background: #0a0a0a;
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.8);
+}
+
+.portfolio-project-card {
+  min-height: 19rem;
+  border: 1px solid rgba(38, 38, 38, 0.85);
+  border-radius: 1.75rem;
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent 36%),
+    rgba(23, 23, 23, 0.56);
+  padding: 1.5rem;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.portfolio-project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.48);
+  box-shadow: 0 28px 90px -54px rgba(59, 130, 246, 0.9);
+}
+
 .reveal-section {
   --stagger: 80ms;
 }

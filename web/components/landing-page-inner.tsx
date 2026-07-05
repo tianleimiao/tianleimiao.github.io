@@ -313,7 +313,7 @@ function HeroIntro({
             <p className="mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
               Hi, I&apos;m <span className="text-cyan-300">Tianlei(Kai) Miao</span>,
             </p>
-            <h1 className="font-heading text-[clamp(2.45rem,6.4vw,4.55rem)] font-bold leading-[1.1] tracking-[-0.035em] text-white">
+            <h1 className="font-heading text-[clamp(2.2rem,5.6vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
               <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-500 bg-clip-text text-transparent">
                 AI-native builder
               </span>

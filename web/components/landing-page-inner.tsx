@@ -310,39 +310,39 @@ function HeroIntro({
           </div>
 
           <div className="text-center md:text-left">
-            <p className="mb-4 text-base font-medium text-neutral-400">
+            <p className="mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
               Hi, I&apos;m <span className="text-cyan-300">Tianlei(Kai) Miao</span>,
             </p>
-            <h1 className="font-heading text-[clamp(2.8rem,7.5vw,5.4rem)] font-bold leading-[1.08] tracking-[-0.04em] text-white">
+            <h1 className="font-heading text-[clamp(2.45rem,6.4vw,4.55rem)] font-bold leading-[1.1] tracking-[-0.035em] text-white">
               <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-500 bg-clip-text text-transparent">
                 AI-native builder
               </span>
               <span className="block text-neutral-100">who ships fast</span>
               <span className="block text-neutral-100">with Product + Systems.</span>
             </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-[clamp(1.2rem,3vw,1.65rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
+            <p className="mx-auto mt-7 max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
               <span className="text-neutral-500">I craft</span>
               <WordRotator />
               <span className="text-neutral-500"> that convert.</span>
             </p>
 
             <div className="mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
-              <span className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-100">
+              <span className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-[0.95rem] font-semibold text-cyan-100">
                 Builder
               </span>
-              <span className="rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-sm font-medium text-neutral-300">
+              <span className="rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-300">
                 Applied AI Operator
               </span>
-              <span className="rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-sm font-semibold text-neutral-100">
+              <span className="rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-100">
                 Autonomous Systems · PhD
               </span>
             </div>
 
             <div className="mt-12 text-center md:text-left">
-              <p className="font-heading text-[0.65rem] font-semibold uppercase tracking-[0.45em] text-neutral-600">
+              <p className="font-heading text-xs font-semibold uppercase tracking-[0.45em] text-neutral-600">
                 Signal
               </p>
-              <div className="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold uppercase tracking-[0.22em] text-neutral-500 md:justify-start">
+              <div className="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[0.95rem] font-semibold uppercase tracking-[0.22em] text-neutral-500 md:justify-start">
                 <span>AI Product</span>
                 <span>Full Stack</span>
                 <span>Launch</span>
@@ -354,7 +354,7 @@ function HeroIntro({
                 <a
                   key={item.href}
                   href={item.href}
-                  className="rounded-full border border-neutral-700/80 bg-neutral-900/80 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.22em] text-neutral-300 transition hover:border-blue-400/60 hover:text-blue-300"
+                  className="rounded-full border border-neutral-700/80 bg-neutral-900/80 px-3.5 py-2 text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-neutral-300 transition hover:border-blue-400/60 hover:text-blue-300"
                 >
                   {item.label}
                 </a>
@@ -372,23 +372,23 @@ function PersonalManifesto() {
     <section className="relative overflow-hidden border-b border-neutral-800/80 px-6 py-24 text-center md:px-12 md:py-28 lg:px-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.08),transparent_30rem)]" aria-hidden />
       <div className="reveal-section relative z-10 mx-auto max-w-4xl">
-        <p className="reveal-item font-heading text-[clamp(1.5rem,4vw,2.4rem)] font-semibold leading-snug text-neutral-600" data-delay="0">
+        <p className="reveal-item font-heading text-[clamp(1.35rem,3.3vw,2.05rem)] font-semibold leading-snug text-neutral-600" data-delay="0">
           <span className="text-cyan-300">PhD-trained systems thinking</span> meets product urgency.
         </p>
-        <p className="reveal-item mt-3 font-heading text-[clamp(1.35rem,3.4vw,2rem)] font-semibold leading-snug text-neutral-500" data-delay="1">
+        <p className="reveal-item mt-3 font-heading text-[clamp(1.2rem,2.8vw,1.7rem)] font-semibold leading-snug text-neutral-500" data-delay="1">
           I build from scratch, test with reality, and keep what survives.
         </p>
-        <p className="reveal-item mt-8 font-heading text-[clamp(1.25rem,3vw,1.8rem)] font-semibold leading-snug text-neutral-500" data-delay="2">
+        <p className="reveal-item mt-8 font-heading text-[clamp(1.15rem,2.5vw,1.55rem)] font-semibold leading-snug text-neutral-500" data-delay="2">
           What drives me doesn&apos;t fit on a shelf.
         </p>
-        <p className="reveal-item mt-2 font-heading text-[clamp(1.4rem,3.4vw,2.1rem)] font-bold leading-snug text-neutral-300" data-delay="3">
+        <p className="reveal-item mt-2 font-heading text-[clamp(1.25rem,2.8vw,1.75rem)] font-bold leading-snug text-neutral-300" data-delay="3">
           Building <span className="text-cyan-300">systems that launch.</span>
         </p>
-        <p className="reveal-item mx-auto mt-12 max-w-3xl text-base leading-8 text-neutral-500" data-delay="4">
+        <p className="reveal-item mx-auto mt-12 max-w-3xl text-[1.05rem] leading-8 text-neutral-500" data-delay="4">
           I turn fuzzy ideas into working AI products: rapid prototypes, production-minded systems, and product narratives
           that help real users understand what to do next.
         </p>
-        <div className="reveal-item mt-10 space-y-2 font-heading text-[clamp(1.25rem,3vw,1.8rem)] font-semibold leading-snug" data-delay="5">
+        <div className="reveal-item mt-10 space-y-2 font-heading text-[clamp(1.15rem,2.6vw,1.65rem)] font-semibold leading-snug" data-delay="5">
           <p className="text-neutral-100">This still feels like day one.</p>
           <p className="text-neutral-400">Harder problems. Faster loops. End-to-end.</p>
           <p className="text-cyan-300">Ready for what&apos;s next.</p>
@@ -565,7 +565,7 @@ function SectionShell({
           <p className="reveal-item font-heading text-sm font-medium uppercase tracking-[0.32em] text-blue-500" data-delay="0">
             {eyebrow}
           </p>
-          <h2 className="reveal-item mt-4 font-heading text-[clamp(2rem,5vw,4rem)] font-bold leading-tight tracking-[0.04em] text-white" data-delay="1">
+          <h2 className="reveal-item mt-4 font-heading text-[clamp(1.85rem,4vw,3.25rem)] font-bold leading-tight tracking-[0.035em] text-white" data-delay="1">
             {title}
           </h2>
         </div>

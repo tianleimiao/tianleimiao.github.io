@@ -158,6 +158,7 @@ export function LandingPageInner(props: LandingPageInnerProps) {
 
       <main className="relative overflow-hidden bg-neutral-950">
         <div className="portfolio-page-glow pointer-events-none absolute inset-0" aria-hidden />
+        <PersonalManifesto />
         <WhatIBuild />
         <ExperienceTimeline />
         <SelectedProjects />
@@ -285,30 +286,70 @@ function HeroIntro({
       </div>
 
       <div className="relative z-20 mx-auto w-full max-w-6xl">
-        <div className="hero-animate-group grid gap-10 py-28 md:grid-cols-[1.2fr_0.8fr] md:items-end md:py-32">
-          <div>
-            <p className="mb-6 font-heading text-xs font-medium uppercase tracking-[0.35em] text-blue-400/80">
-              Tianlei(Kai) Miao
+        <div className="hero-animate-group grid gap-10 py-24 md:grid-cols-[12rem_1fr] md:items-start md:py-28 lg:grid-cols-[13rem_1fr] lg:gap-12">
+          <div className="relative mx-auto w-36 md:mx-0 md:mt-2 md:w-44 lg:w-48">
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-cyan-400/40 via-blue-500/20 to-violet-500/30 blur-xl" aria-hidden />
+            <div className="relative aspect-square overflow-hidden rounded-full border border-cyan-300/45 bg-neutral-900 p-1 shadow-[0_0_40px_-14px_rgba(34,211,238,0.9)]">
+              <div className="relative h-full w-full overflow-hidden rounded-full bg-neutral-950">
+                <picture className="absolute inset-0 block h-full w-full">
+                  <source srcSet={`${assetBase}/images/20260403002505_61_11.webp`} type="image/webp" />
+                  <Image
+                    src="/images/20260403002505_61_11.jpg"
+                    alt="Tianlei(Kai) Miao"
+                    fill
+                    priority
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 144px, 192px"
+                  />
+                </picture>
+              </div>
+            </div>
+            <div className="absolute bottom-2 right-1 grid h-9 w-9 place-items-center rounded-full border border-white/30 bg-cyan-400 text-neutral-950 shadow-[0_0_24px_rgba(34,211,238,0.65)]">
+              <Shield className="h-5 w-5" strokeWidth={2} />
+            </div>
+          </div>
+
+          <div className="text-center md:text-left">
+            <p className="mb-4 text-base font-medium text-neutral-400">
+              Hi, I&apos;m <span className="text-cyan-300">Tianlei(Kai) Miao</span>,
             </p>
-            <h1 className="font-heading text-[clamp(3.1rem,8.5vw,6.8rem)] font-bold leading-[0.95] tracking-[0.04em] text-white">
+            <h1 className="font-heading text-[clamp(2.8rem,7.5vw,5.4rem)] font-bold leading-[1.08] tracking-[-0.04em] text-white">
               <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-500 bg-clip-text text-transparent">
-                AI-native
+                AI-native builder
               </span>
-              <span className="block text-neutral-200">builder.</span>
+              <span className="block text-neutral-100">who ships fast</span>
+              <span className="block text-neutral-100">with Product + Systems.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-[clamp(1.35rem,3.5vw,2rem)] font-semibold tracking-[0.03em] text-neutral-400">
+            <p className="mx-auto mt-7 max-w-2xl text-[clamp(1.2rem,3vw,1.65rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
               <span className="text-neutral-500">I craft</span>
               <WordRotator />
               <span className="text-neutral-500"> that convert.</span>
             </p>
-          </div>
 
-          <div className="rounded-3xl border border-neutral-800/80 bg-neutral-950/55 p-5 shadow-[0_0_60px_-28px_rgba(59,130,246,0.8)] backdrop-blur md:p-6">
-            <p className="text-sm leading-6 text-neutral-300">
-              I turn fuzzy ideas into working AI products: rapid prototypes, production-minded systems, and product
-              narratives that help real users understand what to do next.
-            </p>
-            <nav className="mt-6 flex flex-wrap gap-2" aria-label="Portfolio sections">
+            <div className="mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
+              <span className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-100">
+                Builder
+              </span>
+              <span className="rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-sm font-medium text-neutral-300">
+                Applied AI Operator
+              </span>
+              <span className="rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-sm font-semibold text-neutral-100">
+                Autonomous Systems · PhD
+              </span>
+            </div>
+
+            <div className="mt-12 text-center md:text-left">
+              <p className="font-heading text-[0.65rem] font-semibold uppercase tracking-[0.45em] text-neutral-600">
+                Signal
+              </p>
+              <div className="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-semibold uppercase tracking-[0.22em] text-neutral-500 md:justify-start">
+                <span>AI Product</span>
+                <span>Full Stack</span>
+                <span>Launch</span>
+              </div>
+            </div>
+
+            <nav className="mt-10 flex flex-wrap justify-center gap-2 md:justify-start" aria-label="Portfolio sections">
               {navItems.map((item) => (
                 <a
                   key={item.href}
@@ -323,6 +364,37 @@ function HeroIntro({
         </div>
       </div>
     </header>
+  );
+}
+
+function PersonalManifesto() {
+  return (
+    <section className="relative overflow-hidden border-b border-neutral-800/80 px-6 py-24 text-center md:px-12 md:py-28 lg:px-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.08),transparent_30rem)]" aria-hidden />
+      <div className="reveal-section relative z-10 mx-auto max-w-4xl">
+        <p className="reveal-item font-heading text-[clamp(1.5rem,4vw,2.4rem)] font-semibold leading-snug text-neutral-600" data-delay="0">
+          <span className="text-cyan-300">PhD-trained systems thinking</span> meets product urgency.
+        </p>
+        <p className="reveal-item mt-3 font-heading text-[clamp(1.35rem,3.4vw,2rem)] font-semibold leading-snug text-neutral-500" data-delay="1">
+          I build from scratch, test with reality, and keep what survives.
+        </p>
+        <p className="reveal-item mt-8 font-heading text-[clamp(1.25rem,3vw,1.8rem)] font-semibold leading-snug text-neutral-500" data-delay="2">
+          What drives me doesn&apos;t fit on a shelf.
+        </p>
+        <p className="reveal-item mt-2 font-heading text-[clamp(1.4rem,3.4vw,2.1rem)] font-bold leading-snug text-neutral-300" data-delay="3">
+          Building <span className="text-cyan-300">systems that launch.</span>
+        </p>
+        <p className="reveal-item mx-auto mt-12 max-w-3xl text-base leading-8 text-neutral-500" data-delay="4">
+          I turn fuzzy ideas into working AI products: rapid prototypes, production-minded systems, and product narratives
+          that help real users understand what to do next.
+        </p>
+        <div className="reveal-item mt-10 space-y-2 font-heading text-[clamp(1.25rem,3vw,1.8rem)] font-semibold leading-snug" data-delay="5">
+          <p className="text-neutral-100">This still feels like day one.</p>
+          <p className="text-neutral-400">Harder problems. Faster loops. End-to-end.</p>
+          <p className="text-cyan-300">Ready for what&apos;s next.</p>
+        </div>
+      </div>
+    </section>
   );
 }
 

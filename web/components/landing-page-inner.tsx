@@ -7,7 +7,6 @@ import { ArrowUpRight, Brain, Infinity, Mail, Rocket, Shield } from "lucide-reac
 
 import { SvgBeamDefs } from "@/components/svg-beam-defs";
 import { heroShaderBackdropClassName } from "@/components/ui/hero-shader-backdrop";
-import { WordRotator } from "@/components/word-rotator";
 import { useLandingEffects } from "@/hooks/use-landing-effects";
 import { cn } from "@/lib/utils";
 
@@ -38,103 +37,115 @@ const sidebarItems = [
 
 const capabilities = [
   {
-    title: "AI Product Discovery",
-    text: "Frame ambiguous ideas into crisp product bets, prototype loops, and validation plans.",
+    title: "Collision-Avoidance Product Lifecycle",
+    text: "Lead CAS development, CI/CD, automated testing, deployment, monitoring, release planning and evaluation at RH Marine.",
   },
   {
-    title: "Full-stack Shipping",
-    text: "Move from interface to data, models, evaluation, and production without losing the user problem.",
+    title: "Scenario-Based Evaluation",
+    text: "Standardize acceptance criteria, bounded failure conditions and scenario-based testing for systematic algorithm assessment.",
   },
   {
-    title: "Agentic Workflows",
-    text: "Design AI-assisted workflows with tool use, human handoff, and operational guardrails.",
+    title: "RAG & Internal AI Tooling",
+    text: "Build Python and JavaScript tools over proprietary code/docs to support engineering analysis, debugging and visualization.",
   },
   {
-    title: "Autonomous Systems",
-    text: "Bring a robustness-first mindset from maritime collision avoidance and multi-sensor systems.",
+    title: "Real-Time Autonomous Systems",
+    text: "Ship C++ collision avoidance, radar-based GPS-denied localization, optimization and sensor-fusion systems into production.",
   },
   {
-    title: "Rapid Prototyping",
-    text: "Compress the path from concept to real feedback with AI-native build cycles.",
+    title: "Founder-Led Product Shipping",
+    text: "Built Helperhub solo in 3-4 months and led live e-commerce AI virtual try-on integration for Lensdy.",
   },
   {
-    title: "Product Judgment",
-    text: "Balance speed, system shape, and adoption so demos can become useful products.",
+    title: "Workflow Automation",
+    text: "Build daily-production automations including n8n bookkeeping flows with extraction, validation and human review.",
   },
 ];
 
 const experienceItems = [
   {
-    eyebrow: "Now",
-    title: "AI product builder",
-    meta: "Product · Engineering · Launch",
-    text: "Focused on using AI to compress the time from idea to product to validation, with a bias toward shipped work.",
+    eyebrow: "Aug 2025 - Present",
+    title: "Consultant & CAS Team Lead, Autonomy",
+    meta: "RH Marine · Rotterdam area, Netherlands",
+    text: "Leads the Collision Avoidance System team and full product lifecycle across development, CI/CD, testing, deployment, monitoring and planning.",
   },
   {
-    eyebrow: "Founder mode",
-    title: "Working systems over demos",
-    meta: "Discovery → prototype → adoption",
-    text: "Builds across problem framing, product surfaces, data flows, model behavior, and the operational details that keep systems useful.",
+    eyebrow: "Oct 2023 - Jul 2025",
+    title: "Consultant, Autonomous Systems",
+    meta: "RH Marine · real-time C++ · customer validation",
+    text: "Migrated collision-avoidance systems from research prototype to industrial-grade real-time C++, with customer requirements, integration and vessel commissioning support.",
   },
   {
-    eyebrow: "Research depth",
-    title: "Autonomous maritime systems",
-    meta: "COLREGs-aware planning · Radar / AIS / LiDAR / camera",
-    text: "Worked on systems that operate under uncertainty, where messy inputs and real-world constraints matter more than elegant slides.",
+    eyebrow: "Oct 2019 - Oct 2023",
+    title: "PhD Researcher, Autonomous Systems",
+    meta: "KU Leuven / RH Marine · MSCA Fellow",
+    text: "Researched autonomous sailing, collision avoidance, improved Hybrid A*, radar-AIS sensor fusion, PMBM tracking and quantitative evaluation.",
   },
   {
-    eyebrow: "Operating principle",
-    title: "Robustness beats elegance",
-    meta: "PhD-trained thinking · Product-trained judgment",
-    text: "PhD shaped the analytical foundation; building products sharpened the judgment for what survives real users.",
+    eyebrow: "Founder work",
+    title: "Helperhub, Lensdy and contracting",
+    meta: "Founder · sole engineer · commercial delivery",
+    text: "Built Helperhub from zero, co-founded Lensdy, integrated AI virtual try-on, and ran renovation projects end-to-end in the Netherlands.",
   },
 ];
 
 const projects = [
   {
-    title: "AI Product Launch Systems",
-    status: "Active direction",
-    text: "Rapid prototypes that test positioning, UX, workflows, and model behavior before the idea gets overdesigned.",
-    tags: ["AI Product", "Validation", "Full Stack"],
+    title: "Helperhub",
+    status: "Live founder product",
+    text: "Two-sided task posting and matching platform for overseas Chinese, built solo with Django, React, PostgreSQL, Docker and AWS.",
+    tags: ["Django", "React", "PostgreSQL", "AWS"],
   },
   {
-    title: "Autonomous Collision Avoidance",
-    status: "Research background",
-    text: "COLREGs-aware planning and multi-sensor fusion for maritime environments with uncertainty and real consequences.",
-    tags: ["Autonomy", "Planning", "Sensor Fusion"],
+    title: "Procurement Optimization Platform",
+    status: "Railway deployment",
+    text: "Compares Dutch building-material supplier prices and selects feasible low-cost orders under availability, delivery-cost and minimum-order constraints.",
+    tags: ["Optimization", "Railway", "Commercial"],
   },
   {
-    title: "Conversion-focused Interfaces",
-    status: "Portfolio surface",
-    text: "High-signal landing pages and product narratives built to explain value quickly and move users toward action.",
-    tags: ["Next.js", "WebGL", "Messaging"],
+    title: "Internal Engineering RAG Assistant",
+    status: "RH Marine internal tooling",
+    text: "Python assistant over proprietary source code and technical documentation for engineering analysis, debugging and knowledge retrieval.",
+    tags: ["Python", "RAG", "Engineering"],
   },
   {
-    title: "AI-native Build Workflow",
-    status: "Daily practice",
-    text: "Uses AI as a product and engineering multiplier: ideation, implementation, critique, and iteration in tight loops.",
-    tags: ["LLM Workflow", "Prototyping", "Shipping"],
+    title: "AI Day-Trading Toolkit",
+    status: "Personal system",
+    text: "Pre-market news analysis, live intraday monitoring, automated strategy execution and post-market review with structured outputs.",
+    tags: ["AI", "Automation", "Evaluation"],
+  },
+  {
+    title: "n8n Bookkeeping Automation",
+    status: "Daily production",
+    text: "Email ingestion, schema-based extraction and validation, confidence-thresholded human review and bookkeeping integration.",
+    tags: ["n8n", "Document AI", "HITL"],
+  },
+  {
+    title: "Lensdy AI Virtual Try-On",
+    status: "Live e-commerce workflow",
+    text: "AI-powered virtual try-on integrated into an online eyewear workflow while supporting early European business development.",
+    tags: ["E-commerce", "AI Try-On", "Growth"],
   },
 ];
 
-const proofItems = ["Full Stack", "AI Native", "COLREGs-aware Systems", "Founder Mindset", "Ship Fast", "Robustness > Elegance"];
+const proofItems = ["3+ yrs safety-critical software", "1.5+ yrs GenAI / agents", "3-4 months to ship Helperhub", "€200+/month service fees", "3+ yrs contracting", "3-5 vessel deployments / year"];
 
 const skillGroups = [
   {
     title: "AI / Product",
-    items: ["AI PRDs", "Agent workflows", "Evaluation thinking", "Product validation", "Rapid prototyping"],
+    items: ["LLMs & agents", "RAG", "Evaluation frameworks", "Guardrails", "Human-in-the-loop", "Cursor"],
   },
   {
     title: "Engineering",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Static export"],
+    items: ["Python", "C++", "JavaScript / React", "Django", "PostgreSQL", "Docker", "CI/CD"],
   },
   {
-    title: "Systems",
-    items: ["Autonomous systems", "Sensor fusion", "COLREGs", "Uncertainty", "Reliability"],
+    title: "Autonomy / Systems",
+    items: ["Sensor fusion", "Optimization", "Probabilistic modelling", "Bayesian inference", "State-space models"],
   },
   {
-    title: "Operating Style",
-    items: ["Founder energy", "Bias to ship", "Full-stack ownership", "Clear writing", "User feedback loops"],
+    title: "Delivery / Commercial",
+    items: ["Requirements to deployment", "Scenario-based acceptance", "Customer validation", "Marketplace cold-start", "Quoting to delivery"],
   },
 ];
 
@@ -274,7 +285,7 @@ function HeroIntro({
       <div className="hero-animate-group pointer-events-none absolute right-6 top-6 z-20 md:right-12 md:top-10 lg:right-20">
         <div className="inline-block max-w-[min(100vw-3rem,20rem)] text-right">
           <p className="font-heading text-xs font-medium uppercase tracking-widest text-blue-500 sm:text-sm">
-            AI · Product · Launch
+              Applied AI · Autonomy · Founder
           </p>
           <div className="mt-2 flex w-full justify-between text-blue-400/50 sm:mt-2.5" aria-hidden>
             <Infinity className="h-5 w-5 shrink-0 animate-float" strokeWidth={1.5} />
@@ -315,26 +326,24 @@ function HeroIntro({
             </p>
             <h1 className="font-heading text-[clamp(2.2rem,5.6vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
               <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-500 bg-clip-text text-transparent">
-                AI-native builder
+                Applied AI engineer
               </span>
-              <span className="block text-neutral-100">who ships fast</span>
-              <span className="block text-neutral-100">with Product + Systems.</span>
+              <span className="block text-neutral-100">shipping autonomy</span>
+              <span className="block text-neutral-100">and GenAI systems.</span>
             </h1>
             <p className="mx-auto mt-7 max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
-              <span className="text-neutral-500">I craft</span>
-              <WordRotator />
-              <span className="text-neutral-500"> that convert.</span>
+              PhD-trained founder translating ambiguous operational problems into deployable software.
             </p>
 
             <div className="mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
               <span className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-[0.95rem] font-semibold text-cyan-100">
-                Builder
+                Applied AI Engineer
               </span>
               <span className="rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-300">
-                Applied AI Operator
+                AI Solutions / Forward Deployed
               </span>
               <span className="rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-100">
-                Autonomous Systems · PhD
+                Founder
               </span>
             </div>
 
@@ -343,9 +352,9 @@ function HeroIntro({
                 Signal
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[0.95rem] font-semibold uppercase tracking-[0.22em] text-neutral-500 md:justify-start">
-                <span>AI Product</span>
-                <span>Full Stack</span>
-                <span>Launch</span>
+                <span>RH Marine</span>
+                <span>Helperhub</span>
+                <span>KU Leuven PhD</span>
               </div>
             </div>
 
@@ -373,25 +382,25 @@ function PersonalManifesto() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.08),transparent_30rem)]" aria-hidden />
       <div className="reveal-section relative z-10 mx-auto max-w-4xl">
         <p className="reveal-item font-heading text-[clamp(1.35rem,3.3vw,2.05rem)] font-semibold leading-snug text-neutral-600" data-delay="0">
-          <span className="text-cyan-300">PhD-trained systems thinking</span> meets product urgency.
+          <span className="text-cyan-300">3+ years shipping production software</span> in safety-critical environments.
         </p>
         <p className="reveal-item mt-3 font-heading text-[clamp(1.2rem,2.8vw,1.7rem)] font-semibold leading-snug text-neutral-500" data-delay="1">
-          I build from scratch, test with reality, and keep what survives.
+          1.5+ years building GenAI and agentic systems end-to-end.
         </p>
         <p className="reveal-item mt-8 font-heading text-[clamp(1.15rem,2.5vw,1.55rem)] font-semibold leading-snug text-neutral-500" data-delay="2">
-          What drives me doesn&apos;t fit on a shelf.
+          From collision avoidance at RH Marine to founder-built products.
         </p>
         <p className="reveal-item mt-2 font-heading text-[clamp(1.25rem,2.8vw,1.75rem)] font-bold leading-snug text-neutral-300" data-delay="3">
-          Building <span className="text-cyan-300">systems that launch.</span>
+          Building <span className="text-cyan-300">deployable solutions from ambiguity.</span>
         </p>
         <p className="reveal-item mx-auto mt-12 max-w-3xl text-[1.05rem] leading-8 text-neutral-500" data-delay="4">
-          I turn fuzzy ideas into working AI products: rapid prototypes, production-minded systems, and product narratives
-          that help real users understand what to do next.
+          Comfortable owning the path from problem framing and architecture through testing, deployment and customer-facing
+          validation.
         </p>
         <div className="reveal-item mt-10 space-y-2 font-heading text-[clamp(1.15rem,2.6vw,1.65rem)] font-semibold leading-snug" data-delay="5">
-          <p className="text-neutral-100">This still feels like day one.</p>
-          <p className="text-neutral-400">Harder problems. Faster loops. End-to-end.</p>
-          <p className="text-cyan-300">Ready for what&apos;s next.</p>
+          <p className="text-neutral-100">Autonomous systems, RAG tools, workflow automation and founder-led products.</p>
+          <p className="text-neutral-400">Requirements → architecture → implementation → testing → deployment.</p>
+          <p className="text-cyan-300">Customer validation included.</p>
         </div>
       </div>
     </section>
@@ -400,7 +409,7 @@ function PersonalManifesto() {
 
 function WhatIBuild() {
   return (
-    <SectionShell id="build" eyebrow="Work Experience" title="End-to-end AI product work, from signal to shipped systems.">
+    <SectionShell id="build" eyebrow="Work Experience" title="Applied AI, autonomous systems and production delivery.">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((item, index) => (
           <article key={item.title} className="flashlight-card reveal-item min-h-52 p-6" data-delay={index % 6}>
@@ -420,7 +429,7 @@ function WhatIBuild() {
 
 function ExperienceTimeline() {
   return (
-    <SectionShell id="path" eyebrow="My path" title="A systems background shaped into product judgment.">
+    <SectionShell id="path" eyebrow="My path" title="From autonomous sailing research to deployed AI products.">
       <div className="grid gap-10 lg:grid-cols-[0.7fr_1fr] lg:items-start">
         <div className="reveal-item" data-delay="0">
           <PortraitCard />
@@ -442,7 +451,7 @@ function ExperienceTimeline() {
 
 function SelectedProjects() {
   return (
-    <SectionShell id="projects" eyebrow="Selected projects" title="Current directions, research roots, and product surfaces.">
+    <SectionShell id="projects" eyebrow="Selected projects" title="Live products, internal tools and AI automation from the CV.">
       <div className="grid gap-4 lg:grid-cols-2">
         {projects.map((project, index) => (
           <article key={project.title} className="portfolio-project-card reveal-item" data-delay={index}>
@@ -487,7 +496,7 @@ function ProofMetrics() {
 
 function SkillsStack() {
   return (
-    <SectionShell id="skills" eyebrow="Skills stack" title="The tools and habits behind the build loop.">
+    <SectionShell id="skills" eyebrow="Skills stack" title="Skills from AI systems, production engineering and commercial delivery.">
       <div className="grid gap-4 md:grid-cols-2">
         {skillGroups.map((group, index) => (
           <article key={group.title} className="reveal-item rounded-3xl border border-neutral-800/80 bg-neutral-900/45 p-6" data-delay={index}>
@@ -515,8 +524,7 @@ function ContactFooter() {
             Tianlei(Kai) Miao
           </p>
           <p className="reveal-item max-w-xl text-sm leading-6 text-neutral-500" data-delay="1">
-            AI · Product · Launch — building fast, useful systems for the space between intent and something real in the
-            wild.
+            Applied AI Engineer · AI Solutions / Forward Deployed · Founder, based in Capelle aan den IJssel, Netherlands.
           </p>
         </div>
         <div className="reveal-item flex flex-col gap-5 md:items-end" data-delay="2">
@@ -527,17 +535,17 @@ function ContactFooter() {
               </a>
             ))}
             <a
-              href="https://github.com/tianleimiao/tianleimiao.github.io"
+              href="https://www.linkedin.com/in/tianlei-miao-phd-772654133"
               className="text-sm text-neutral-400 transition-colors hover:text-blue-500"
               target="_blank"
               rel="noopener noreferrer"
             >
-              GitHub
+              LinkedIn
             </a>
-            <span className="inline-flex items-center gap-2 text-sm text-neutral-500">
+            <a href="mailto:tianlei.miao@gmail.com" className="inline-flex items-center gap-2 text-sm text-neutral-400 transition-colors hover:text-blue-500">
               <Mail className="h-4 w-4" strokeWidth={1.5} />
-              Email TBD
-            </span>
+              Email
+            </a>
           </nav>
           <p className="text-xs text-neutral-600">© {year} Tianlei(Kai) Miao. All rights reserved.</p>
         </div>

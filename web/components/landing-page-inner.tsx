@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, Brain, Infinity, Mail, Rocket, Shield } from "lucide-react";
 
 import { SvgBeamDefs } from "@/components/svg-beam-defs";
@@ -21,10 +21,19 @@ const year = new Date().getFullYear();
 const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const navItems = [
+  { label: "Experience", href: "#build" },
   { label: "Path", href: "#path" },
-  { label: "Build", href: "#build" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+];
+
+const sidebarItems = [
+  { label: "Experience", href: "#build", id: "build" },
+  { label: "My Path", href: "#path", id: "path" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Proof", href: "#proof", id: "proof" },
+  { label: "Skills & Stack", href: "#skills", id: "skills" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 const capabilities = [
@@ -137,6 +146,7 @@ export function LandingPageInner(props: LandingPageInnerProps) {
   const introDone = props.embedPreview ? true : props.introComplete;
   const skipHeroEntranceDelay =
     props.embedPreview || (!props.embedPreview && Boolean(props.skipHeroEntranceDelay));
+  const activeSection = useScrollSpy();
 
   useLandingEffects();
 
@@ -144,6 +154,7 @@ export function LandingPageInner(props: LandingPageInnerProps) {
     <>
       <SvgBeamDefs />
       <HeroIntro introDone={introDone} skipHeroEntranceDelay={skipHeroEntranceDelay} />
+      <ScrollSpySidebar activeSection={activeSection} />
 
       <main className="relative overflow-hidden bg-neutral-950">
         <div className="portfolio-page-glow pointer-events-none absolute inset-0" aria-hidden />
@@ -156,6 +167,62 @@ export function LandingPageInner(props: LandingPageInnerProps) {
 
       <ContactFooter />
     </>
+  );
+}
+
+function useScrollSpy() {
+  const [activeSection, setActiveSection] = useState(sidebarItems[0].id);
+
+  useEffect(() => {
+    const sections = sidebarItems
+      .map((item) => document.getElementById(item.id))
+      .filter((section): section is HTMLElement => Boolean(section));
+
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target.id) {
+          setActiveSection(visible.target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-30% 0px -45% 0px",
+        threshold: [0.08, 0.2, 0.45, 0.7],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  return activeSection;
+}
+
+function ScrollSpySidebar({ activeSection }: { activeSection: string }) {
+  return (
+    <nav className="portfolio-scrollspy" aria-label="Current page section">
+      {sidebarItems.map((item) => {
+        const isActive = activeSection === item.id;
+
+        return (
+          <a
+            key={item.id}
+            href={item.href}
+            className={cn("portfolio-scrollspy-link", isActive && "is-active")}
+            aria-current={isActive ? "location" : undefined}
+          >
+            <span className="portfolio-scrollspy-dot" aria-hidden />
+            <span>{item.label}</span>
+          </a>
+        );
+      })}
+    </nav>
   );
 }
 
@@ -261,7 +328,7 @@ function HeroIntro({
 
 function WhatIBuild() {
   return (
-    <SectionShell id="build" eyebrow="What I build" title="End-to-end AI product work, from signal to shipped systems.">
+    <SectionShell id="build" eyebrow="Work Experience" title="End-to-end AI product work, from signal to shipped systems.">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((item, index) => (
           <article key={item.title} className="flashlight-card reveal-item min-h-52 p-6" data-delay={index % 6}>
@@ -331,7 +398,7 @@ function SelectedProjects() {
 
 function ProofMetrics() {
   return (
-    <section className="relative border-y border-neutral-800/80 px-6 py-14 md:px-12 lg:px-20">
+    <section id="proof" className="relative border-y border-neutral-800/80 px-6 py-14 md:px-12 lg:px-20">
       <BeamColumns className="px-[8%] opacity-35 md:px-[18%]" />
       <div className="reveal-section relative z-10 mx-auto max-w-6xl">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">

@@ -396,6 +396,73 @@ html {
   box-shadow: 0 28px 90px -54px rgba(59, 130, 246, 0.9);
 }
 
+.portfolio-scrollspy {
+  position: fixed;
+  left: 1.5rem;
+  top: 50%;
+  z-index: 50;
+  display: none;
+  transform: translateY(-50%);
+}
+
+.portfolio-scrollspy::before {
+  content: "";
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0.32rem;
+  top: 0.8rem;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.55), rgba(64, 64, 64, 0.55));
+}
+
+.portfolio-scrollspy-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 1.7rem;
+  padding: 0.28rem 0 0.28rem 0.05rem;
+  color: rgb(163 163 163);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: color 0.25s ease;
+}
+
+.portfolio-scrollspy-link:hover,
+.portfolio-scrollspy-link.is-active {
+  color: rgb(103 232 249);
+}
+
+.portfolio-scrollspy-dot {
+  position: relative;
+  z-index: 1;
+  width: 0.68rem;
+  height: 0.68rem;
+  border-radius: 999px;
+  border: 1px solid rgba(82, 82, 82, 0.85);
+  background: rgb(10 10 10);
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.portfolio-scrollspy-link.is-active .portfolio-scrollspy-dot {
+  border-color: rgba(34, 211, 238, 0.95);
+  background: rgb(34 211 238);
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.8);
+}
+
+@media (min-width: 1280px) {
+  .portfolio-scrollspy {
+    display: grid;
+  }
+}
+
+@media (min-width: 1536px) {
+  .portfolio-scrollspy {
+    left: 2rem;
+  }
+}
+
 .reveal-section {
   --stagger: 80ms;
 }

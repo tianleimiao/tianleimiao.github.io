@@ -382,29 +382,31 @@ function HeroIntro({
             </div>
           </div>
 
-          <div className="text-center md:text-left">
-            <p className="mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
+          <div className="hero-copy text-center md:text-left">
+            <p className="hero-text-reveal mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
               Hi, I&apos;m <span className="text-cyan-300">Tianlei(Kai) Miao</span>,
             </p>
             <h1 className="font-heading text-[clamp(2.2rem,5.6vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
-              <span className="animate-gradient-x block bg-gradient-to-r from-white via-blue-100 to-neutral-500 bg-clip-text text-transparent">
+              <span className="hero-title-line hero-title-line-gradient block">
                 Applied AI engineer
               </span>
-              <span className="block text-neutral-100">shipping autonomy</span>
-              <span className="block text-neutral-100">and GenAI systems.</span>
+              <span className="hero-title-line block text-neutral-100">shipping autonomy</span>
+              <span className="hero-title-line block text-neutral-100">
+                and <span className="hero-bracket-pulse">GenAI</span> systems.
+              </span>
             </h1>
-            <p className="mx-auto mt-7 max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
+            <p className="hero-text-reveal mx-auto mt-7 max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
               PhD-trained founder translating ambiguous operational problems into deployable software.
             </p>
 
             <div className="mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
-              <span className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-[0.95rem] font-semibold text-cyan-100">
+              <span className="hero-chip rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-[0.95rem] font-semibold text-cyan-100">
                 Applied AI Engineer
               </span>
-              <span className="rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-300">
+              <span className="hero-chip rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-300">
                 AI Solutions / Forward Deployed
               </span>
-              <span className="rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-100">
+              <span className="hero-chip rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-100">
                 Founder
               </span>
             </div>

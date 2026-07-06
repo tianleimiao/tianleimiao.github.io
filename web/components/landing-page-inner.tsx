@@ -5,6 +5,15 @@ import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, Brain, Infinity, Mail, Rocket, Shield } from "lucide-react";
 
+import {
+  HeroGradientSplitText,
+  HeroNavPills,
+  HeroRoleRotator,
+  HeroScrambleLabel,
+  HeroSignalItems,
+  HeroSplitText,
+  useHeroMotionReady,
+} from "@/components/hero-text-effects";
 import { SvgBeamDefs } from "@/components/svg-beam-defs";
 import { heroShaderBackdropClassName } from "@/components/ui/hero-shader-backdrop";
 import { useLandingEffects } from "@/hooks/use-landing-effects";
@@ -217,6 +226,7 @@ export type LandingPageInnerProps =
 
 export function LandingPageInner(props: LandingPageInnerProps) {
   const introDone = props.embedPreview ? true : props.introComplete;
+  // Only skip re-play when returning from device preview iframe — not in dev.
   const skipHeroEntranceDelay =
     props.embedPreview || (!props.embedPreview && Boolean(props.skipHeroEntranceDelay));
   const activeSection = useScrollSpy();
@@ -307,13 +317,17 @@ function HeroIntro({
   introDone: boolean;
   skipHeroEntranceDelay: boolean;
 }) {
+  const motionReady = useHeroMotionReady(introDone);
+  const animate = motionReady && !skipHeroEntranceDelay;
+
   return (
     <header
       id="hero-intro"
       className={cn(
         "relative flex min-h-[92vh] flex-col justify-center overflow-hidden border-b border-neutral-800/80 bg-neutral-950 px-6 shadow-sm md:px-12 lg:px-20",
         skipHeroEntranceDelay && "hero-intro-skip-enter",
-        (introDone || skipHeroEntranceDelay) && "hero-intro-ready"
+        introDone && "hero-intro-ready",
+        animate && "hero-intro-animate"
       )}
     >
       {introDone ? (
@@ -384,16 +398,27 @@ function HeroIntro({
           </div>
 
           <div className="hero-copy text-center md:text-left">
-            <p className="hero-text-reveal mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
-              Hi, I&apos;m <span className="text-cyan-300">Tianlei(Kai) Miao</span>,
+            <p className="mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
+              Hi, I&apos;m{" "}
+              <span className="hero-name-glow text-cyan-300">
+                <HeroSplitText text="Tianlei(Kai) Miao" baseDelay={0.02} charStagger={0.022} active={animate} />
+              </span>
+              ,
             </p>
             <h1 className="font-heading text-[clamp(2.2rem,5.6vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
-              <span className="hero-title-line hero-title-line-gradient block">
-                Applied AI engineer
+              <span className="block">
+                <HeroGradientSplitText
+                  text="Applied AI engineer"
+                  baseDelay={0.1}
+                  charStagger={0.032}
+                  active={animate}
+                />
               </span>
-              <span className="hero-title-line block text-neutral-100">shipping autonomy</span>
               <span className="hero-title-line block text-neutral-100">
-                and <span className="hero-bracket-pulse">GenAI</span> systems.
+                shipping <HeroRoleRotator active={animate || skipHeroEntranceDelay} />
+              </span>
+              <span className="hero-title-line block text-neutral-100">
+                and <HeroScrambleLabel label="GenAI" active={animate} /> systems.
               </span>
             </h1>
             <p className="hero-text-reveal mx-auto mt-7 max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
@@ -412,27 +437,17 @@ function HeroIntro({
               </span>
             </div>
 
-            <div className="mt-12 text-center md:text-left">
-              <p className="font-heading text-xs font-semibold uppercase tracking-[0.45em] text-neutral-600">
+            <div className="hero-signal-block mt-12 text-center md:text-left">
+              <p className="hero-signal-label font-heading text-xs font-semibold uppercase tracking-[0.45em] text-neutral-600">
                 Signal
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[0.95rem] font-semibold uppercase tracking-[0.22em] text-neutral-500 md:justify-start">
-                <span>RH Marine</span>
-                <span>Helperhub</span>
-                <span>KU Leuven PhD</span>
+                <HeroSignalItems items={["RH Marine", "Helperhub", "KU Leuven PhD"]} active={animate} />
               </div>
             </div>
 
             <nav className="mt-10 flex flex-wrap justify-center gap-2 md:justify-start" aria-label="Portfolio sections">
-              {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-full border border-neutral-700/80 bg-neutral-900/80 px-3.5 py-2 text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-neutral-300 transition hover:border-blue-400/60 hover:text-blue-300"
-                >
-                  {item.label}
-                </a>
-              ))}
+              <HeroNavPills items={navItems} active={animate} />
             </nav>
           </div>
         </div>

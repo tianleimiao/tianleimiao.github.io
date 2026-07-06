@@ -17,11 +17,12 @@ const ShaderAnimation = dynamic<ShaderAnimationProps>(
 
 export function LandingPage() {
   const introCtx = useContext(DeviceDesktopIntroContext);
-  const skipIntroInDev = process.env.NODE_ENV === "development";
-  const forceSkipIntro = (introCtx?.desktopIntroCompleted ?? false) || skipIntroInDev;
+  const skipIntroShader =
+    (introCtx?.desktopIntroCompleted ?? false) || process.env.NODE_ENV === "development";
+  const skipHeroReplay = introCtx?.desktopIntroCompleted ?? false;
   const markDesktopIntroComplete = introCtx?.markDesktopIntroComplete ?? (() => {});
 
-  const [introComplete, setIntroComplete] = useState(() => forceSkipIntro);
+  const [introComplete, setIntroComplete] = useState(() => skipIntroShader);
 
   const onIntroEnd = useCallback(() => {
     setIntroComplete(true);
@@ -29,20 +30,20 @@ export function LandingPage() {
   }, [markDesktopIntroComplete]);
 
   useEffect(() => {
-    if (forceSkipIntro) return;
+    if (skipIntroShader) return;
     const id = window.setTimeout(() => setIntroComplete(true), 6000);
     return () => window.clearTimeout(id);
-  }, [forceSkipIntro]);
+  }, [skipIntroShader]);
 
   return (
     <>
-      {!skipIntroInDev && (
-        <ShaderAnimation forceSkipIntro={forceSkipIntro} onIntroEnd={onIntroEnd} />
+      {!skipIntroShader && (
+        <ShaderAnimation forceSkipIntro={skipIntroShader} onIntroEnd={onIntroEnd} />
       )}
       <LandingPageInner
         embedPreview={false}
         introComplete={introComplete}
-        skipHeroEntranceDelay={forceSkipIntro}
+        skipHeroEntranceDelay={skipHeroReplay}
       />
     </>
   );

@@ -64,41 +64,170 @@ html {
   filter: blur(10px);
 }
 
-.hero-intro-ready .hero-text-reveal:first-child {
+/* SplitText-style char reveal */
+.hero-split-text {
+  display: inline;
+}
+
+.hero-split-word {
+  display: inline-block;
+  white-space: pre;
+}
+
+.hero-split-char {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  line-height: inherit;
+}
+
+.hero-split-char-inner {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(115%) rotateX(42deg);
+  filter: blur(8px);
+  transform-origin: 50% 100%;
+}
+
+.hero-split-char.is-active .hero-split-char-inner {
+  animation: hero-char-rise 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-split-char-gradient .hero-split-char-inner {
+  color: transparent;
+  background: linear-gradient(90deg, #22d3ee, #60a5fa, #a78bfa, #22d3ee);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-intro-animate .hero-split-char-gradient.is-active .hero-split-char-inner {
+  animation-name: hero-char-rise, hero-gradient-pan;
+  animation-duration: 0.72s, 5.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-in-out;
+  animation-fill-mode: forwards, none;
+  animation-iteration-count: 1, infinite;
+}
+
+.hero-name-glow {
+  display: inline-block;
+}
+
+.hero-intro-animate .hero-name-glow {
+  animation: hero-name-breathe 4.5s ease-in-out 1.2s infinite;
+}
+
+.hero-role-rotator {
+  position: relative;
+  display: inline-grid;
+  min-width: 11ch;
+  vertical-align: bottom;
+  text-align: left;
+}
+
+.hero-role-rotator-slot {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  filter: blur(8px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-role-rotator-slot.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.hero-role-rotator-slot.is-ready.is-active {
+  animation: hero-role-glow 3.2s ease-in-out infinite;
+}
+
+.hero-scramble-label {
+  display: inline-block;
+  min-width: 4.5ch;
+  letter-spacing: 0.04em;
+}
+
+.hero-signal-label {
+  opacity: 0;
+  transform: translateY(10px);
+  letter-spacing: 0.45em;
+}
+
+.hero-signal-item,
+.hero-nav-pill {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+}
+
+.hero-signal-block {
+  position: relative;
+}
+
+.hero-signal-block::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 4.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.85), transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.hero-intro-animate .hero-signal-block::after {
+  animation: hero-signal-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.88s forwards;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-text-reveal:first-child {
   animation: hero-text-rise 0.7s cubic-bezier(0.2, 0.85, 0.35, 1) 0.05s forwards;
 }
 
-.hero-intro-ready .hero-title-line:nth-child(1) {
-  animation: hero-text-rise 0.8s cubic-bezier(0.2, 0.85, 0.35, 1) 0.12s forwards;
+.hero-intro-ready.hero-intro-animate .hero-title-line:nth-child(2) {
+  animation: hero-text-rise 0.55s cubic-bezier(0.2, 0.85, 0.35, 1) 0.18s forwards;
 }
 
-.hero-intro-ready .hero-title-line:nth-child(2) {
-  animation: hero-text-rise 0.8s cubic-bezier(0.2, 0.85, 0.35, 1) 0.24s forwards;
+.hero-intro-ready.hero-intro-animate .hero-title-line:nth-child(3) {
+  animation: hero-text-rise 0.55s cubic-bezier(0.2, 0.85, 0.35, 1) 0.28s forwards;
 }
 
-.hero-intro-ready .hero-title-line:nth-child(3) {
-  animation: hero-text-rise 0.8s cubic-bezier(0.2, 0.85, 0.35, 1) 0.36s forwards;
-}
-
-.hero-intro-ready .hero-text-reveal:not(:first-child) {
+.hero-intro-ready.hero-intro-animate .hero-text-reveal:not(:first-child) {
   animation: hero-text-rise 0.75s cubic-bezier(0.2, 0.85, 0.35, 1) 0.48s forwards;
 }
 
-.hero-intro-ready .hero-chip {
+.hero-intro-ready.hero-intro-animate .hero-signal-label {
+  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) 0.82s forwards;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-signal-item.is-active {
+  animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-nav-pill.is-active {
+  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-chip {
   position: relative;
   overflow: hidden;
   animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) 0.58s forwards;
 }
 
-.hero-intro-ready .hero-chip:nth-child(2) {
+.hero-intro-ready.hero-intro-animate .hero-chip:nth-child(2) {
   animation-delay: 0.7s;
 }
 
-.hero-intro-ready .hero-chip:nth-child(3) {
+.hero-intro-ready.hero-intro-animate .hero-chip:nth-child(3) {
   animation-delay: 0.82s;
 }
 
-.hero-intro-ready .hero-chip::after {
+.hero-intro-ready.hero-intro-animate .hero-chip::after {
   content: "";
   position: absolute;
   inset: -40% -120%;
@@ -115,13 +244,38 @@ html {
   background-clip: text;
 }
 
-.hero-intro-ready .hero-title-line-gradient {
-  animation-name: hero-text-rise, hero-gradient-pan;
-  animation-duration: 0.8s, 6s;
-  animation-timing-function: cubic-bezier(0.2, 0.85, 0.35, 1), ease-in-out;
-  animation-delay: 0.12s, 0.9s;
-  animation-fill-mode: forwards, none;
-  animation-iteration-count: 1, infinite;
+@keyframes hero-char-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-name-breathe {
+  0%,
+  100% {
+    text-shadow: 0 0 0 rgba(34, 211, 238, 0);
+  }
+  50% {
+    text-shadow: 0 0 22px rgba(34, 211, 238, 0.35);
+  }
+}
+
+@keyframes hero-role-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0 rgba(34, 211, 238, 0);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(34, 211, 238, 0.45);
+  }
+}
+
+@keyframes hero-signal-line {
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .hero-bracket-pulse {
@@ -194,7 +348,18 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .hero-title-line,
   .hero-text-reveal,
-  .hero-chip {
+  .hero-chip,
+  .hero-signal-label,
+  .hero-signal-item,
+  .hero-nav-pill {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none !important;
+  }
+
+  .hero-split-char-inner,
+  .hero-role-rotator-slot {
     opacity: 1;
     transform: none;
     filter: none;
@@ -203,12 +368,14 @@ html {
 
   .hero-chip::after,
   .hero-bracket-pulse::before,
-  .hero-bracket-pulse::after {
+  .hero-bracket-pulse::after,
+  .hero-signal-block::after,
+  .hero-name-glow {
     animation: none;
   }
 }
 
-/* First-load intro only; skip when returning from device preview (same flag as shader skip) */
+/* Device preview return: show final state without replaying entrance */
 .hero-intro-skip-enter .hero-animate-group,
 .hero-intro-skip-enter.hero-intro-ready .hero-animate-group {
   opacity: 1;
@@ -218,19 +385,32 @@ html {
 .hero-intro-skip-enter .hero-title-line,
 .hero-intro-skip-enter .hero-text-reveal,
 .hero-intro-skip-enter .hero-chip,
+.hero-intro-skip-enter .hero-signal-label,
+.hero-intro-skip-enter .hero-signal-item,
+.hero-intro-skip-enter .hero-nav-pill,
+.hero-intro-skip-enter .hero-split-char-inner,
+.hero-intro-skip-enter .hero-role-rotator-slot,
 .hero-intro-skip-enter .hero-chip::after,
-.hero-intro-skip-enter .hero-bracket-pulse::before,
-.hero-intro-skip-enter .hero-bracket-pulse::after,
+.hero-intro-skip-enter .hero-signal-block::after,
 .embed-preview .hero-title-line,
 .embed-preview .hero-text-reveal,
 .embed-preview .hero-chip,
+.embed-preview .hero-signal-label,
+.embed-preview .hero-signal-item,
+.embed-preview .hero-nav-pill,
+.embed-preview .hero-split-char-inner,
+.embed-preview .hero-role-rotator-slot,
 .embed-preview .hero-chip::after,
-.embed-preview .hero-bracket-pulse::before,
-.embed-preview .hero-bracket-pulse::after {
+.embed-preview .hero-signal-block::after {
   opacity: 1;
   transform: none;
   filter: none;
   animation: none;
+}
+
+.hero-intro-skip-enter .hero-role-rotator-slot:not(.is-active),
+.embed-preview .hero-role-rotator-slot:not(.is-active) {
+  display: none;
 }
 
 /* /embed (device-preview iframe): avoid scroll-locked intro + IO-gated opacity so all sections stay visible */

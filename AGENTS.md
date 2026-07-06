@@ -27,7 +27,7 @@ Understand → Edit → Verify → Commit → (optional) Push
    cd web && npm run validate
    ```
    Or step-by-step: `npm run lint` then `npm run build`.
-4. **Commit** — After verification passes, create a git commit (see `.cursor/rules/git-automation.mdc`). Do not commit build artifacts (`.next/`, `out/`).
+4. **Commit** — **Automatically** after verification passes (always, unless user said "不要提交"). See `.cursor/rules/git-automation.mdc`.
 5. **Push** — Only when the user explicitly asks.
 
 If validation fails, fix issues and re-run until green. Never commit broken builds.
@@ -62,15 +62,16 @@ web/lib/utils.ts      cn() helper
 web/next.config.ts    static export + basePath for GitHub Pages
 ```
 
-## Automation triggers
+## Automation policy
 
-Phrases that enable full automation (verify + commit):
+**Default:** every code-change task ends with `validate` → **auto-commit**.
 
-- "完成并提交" / "verify and commit" / "ship it"
-- "自动化开发" / "automate this change"
-- Any task ending with "然后 commit"
+Skip commit only when:
+- Read-only task (分析 / review / explain) with no edits
+- User explicitly says "不要提交" / "don't commit"
+- Working tree is clean
 
-Without those cues: verify always, commit only if explicitly requested.
+Push still requires explicit user request.
 
 ## Constraints
 

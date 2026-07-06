@@ -1,18 +1,20 @@
 ---
-description: Git commit automation — staging, messages, and safety for agentic workflows
+description: Git commit automation — auto-commit after validate passes, staging, messages, safety
 alwaysApply: true
 ---
 
 # Git Automation
 
-## When to commit
+## When to commit (default: always after validate)
 
-Commit after `npm run validate` passes AND:
+After `npm run validate` passes:
 
-- User requested commit/automation, OR
-- Task explicitly includes shipping the change
+1. If there are changes → **commit automatically** (no extra user prompt needed).
+2. If working tree clean → skip commit, report done.
 
-Never commit without passing validation. Never commit `.next/`, `out/`, `node_modules/`, `.env*`.
+Do **not** commit if validation failed or only build artifacts changed.
+
+Never commit `.next/`, `out/`, `node_modules/`, `.env*`.
 
 ## Commit workflow
 
@@ -28,14 +30,12 @@ Then sequentially:
 
 ```bash
 git add <relevant-files>
-git commit -m "$(cat <<'EOF'
-<type>: <short summary>
-
-<optional body — why this change matters>
-EOF
-)"
+git commit -F .git/COMMIT_EDITMSG
+# or: git commit -m "type(scope): summary"
 git status
 ```
+
+On Windows PowerShell, prefer message file or single `-m` line if heredoc fails.
 
 ## Message format
 
@@ -48,7 +48,7 @@ Use conventional commits:
 | `style` | Visual/CSS only |
 | `perf` | Performance |
 | `refactor` | Code restructure, no behavior change |
-| `chore` | Tooling, deps, CI |
+| `chore` | Tooling, deps, CI, agent rules |
 
 Example: `feat(hero): add scroll reveal to capabilities section`
 

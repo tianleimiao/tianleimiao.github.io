@@ -1,16 +1,11 @@
 ---
 name: verify-and-commit
-description: Runs lint and build validation in web/, then stages and commits changes with conventional commit messages. Use when a task is complete, user asks to verify and commit, ship changes, or says 完成并提交/自动化开发.
+description: Runs lint, typecheck, and build in web/, then automatically stages and commits all intentional changes. Use after every code edit task, when validation completes, or when user says 验证/validate/commit/提交.
 ---
 
 # Verify and Commit
 
-End-to-end workflow: validate → stage → commit.
-
-## Prerequisites
-
-- Changes are in `web/` (or repo config files)
-- Working directory is repo root
+Default end-of-task workflow: **validate → stage → commit** (automatic, no confirmation needed).
 
 ## Step 1: Validate
 
@@ -18,15 +13,7 @@ End-to-end workflow: validate → stage → commit.
 cd web && npm run validate
 ```
 
-If `validate` script missing, run sequentially:
-
-```bash
-cd web && npm run lint && npm run build
-```
-
-**On failure:** read errors, fix code, re-run until exit code 0.
-
-Also check linter diagnostics on edited files.
+**On failure:** fix, re-run until exit code 0. Do not commit.
 
 ## Step 2: Review changes
 
@@ -38,49 +25,31 @@ git diff
 git log -3 --oneline
 ```
 
-Confirm:
+Skip commit if working tree is clean. Exclude `.next/`, `out/`, `node_modules/`, `.env`.
 
-- No `.next/`, `out/`, `node_modules/`, `.env` in diff
-- Only intentional files changed
-
-## Step 3: Stage and commit
+## Step 3: Stage and commit (automatic)
 
 ```bash
-git add <paths>
-git commit -m "$(cat <<'EOF'
-<type>(<scope>): <summary>
-
-<why — one sentence>
-EOF
-)"
+git add <relevant-files>
+git commit -m "type(scope): summary"
 git status
 ```
 
-### Scope examples
-
-- `hero`, `shader`, `footer`, `ci`, `deps`, `a11y`
+Commit is **mandatory** after validate passes when files changed.
 
 ## Step 4: Report
 
-Tell user:
-
-- Validation result (lint + build)
+- Validation: lint ✓ typecheck ✓ build ✓
 - Commit hash and message
-- Remaining unstaged/untracked files (if any)
+- Unstaged files (if any)
+
+## Skip commit only when
+
+- No file changes
+- User said "don't commit" / "不要提交"
+- Read-only task (analysis, review)
 
 ## Do not
 
-- Commit if validation fails
 - Push unless user explicitly asked
-- Stage build artifacts
-
-## Example
-
-Task: "Fix footer link color and commit"
-
-```
-1. cd web && npm run validate     → OK
-2. git add web/components/landing-page-inner.tsx
-3. git commit -m "fix(footer): improve link contrast for WCAG AA"
-4. Report: committed abc1234
-```
+- Commit if validation fails

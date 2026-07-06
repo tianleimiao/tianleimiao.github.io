@@ -1,5 +1,5 @@
 ---
-description: Mandatory agent workflow — verify after every code change, then commit when task completes
+description: Mandatory agent workflow — verify after every code change, auto-commit when validation passes
 alwaysApply: true
 ---
 
@@ -15,25 +15,30 @@ Before reporting a task as done:
    ```
 2. If lint or build fails → fix and re-run until green.
 3. Read linter diagnostics for edited files (`ReadLints`).
+4. **Auto-commit** when validation passes and there are intentional changes (see `git-automation.mdc`).
 
 ## Task completion checklist
 
 ```
 - [ ] Changes are minimal and match project conventions
-- [ ] `npm run validate` passes (lint + build)
+- [ ] `npm run validate` passes (lint + typecheck + build)
 - [ ] No secrets or build artifacts staged
-- [ ] Git commit created (when automation requested or user asked)
+- [ ] Git commit created automatically after validate ✓
 - [ ] Commit message describes WHY, not just WHAT
 ```
 
-## Automation mode
+## Auto-commit policy (default ON)
 
-Auto-commit after successful validation when the user says:
+**Always commit** after successful `npm run validate` when:
 
-- "完成并提交", "verify and commit", "ship it", "automate"
-- Or explicitly includes "commit" / "提交" in the task
+- Any source/config file was edited in the task, OR
+- User requested a code change (implicit or explicit)
 
-Otherwise: verify always, commit only on explicit request.
+**Skip commit only when:**
+
+- Task is read-only (review, explain, 分析, explore) with zero file edits
+- User explicitly says "不要提交" / "don't commit" / "no commit"
+- Nothing to commit (working tree clean after validate)
 
 ## Scope discipline
 
@@ -44,6 +49,6 @@ Otherwise: verify always, commit only on explicit request.
 
 ## Failure handling
 
-- Validation failed → fix root cause, do not skip steps
+- Validation failed → fix root cause, do not skip steps, do not commit
 - Pre-commit hook rejected → fix issue, create NEW commit (never `--amend` unless rules allow)
 - Missing deps → `cd web && npm install`, then retry validate

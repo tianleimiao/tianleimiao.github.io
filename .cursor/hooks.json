@@ -4,7 +4,7 @@
     "stop": [
       {
         "type": "prompt",
-        "prompt": "The agent is finishing. If any files under web/ were modified in this session, confirm that `cd web && npm run validate` was run successfully before the task was marked complete. If not validated yet, return followup_message asking the agent to run validation and commit if the user requested automation. Otherwise return empty followup.",
+        "prompt": "The agent is finishing. If any source or config files were modified, confirm that (1) `cd web && npm run validate` passed and (2) a git commit was created for all intentional changes. If validate was not run or commit was skipped without user saying don't commit, return followup_message instructing the agent to run validate and commit now. Otherwise return empty followup.",
         "timeout": 15,
         "loop_limit": 1
       }

@@ -34,9 +34,9 @@ Full pipeline for delivering a feature in this repo without manual steps.
 
 | User says | Action |
 |-----------|--------|
-| 自动化开发 / automate | Full pipeline including commit |
-| 完成并提交 | Verify + commit |
-| Just explore / 分析 | Plan only, no commit |
+| Any code change task | Verify + **auto-commit** (default) |
+| 不要提交 / don't commit | Verify only, skip commit |
+| Just explore / 分析 | Plan only, no edits, no commit |
 
 ## Report template
 

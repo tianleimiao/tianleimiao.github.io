@@ -17,7 +17,7 @@ export const HERO_TIMELINE = {
   rotatorCycle: 3.4,
 } as const;
 
-const ROTATING_WORDS = ["autonomy", "production AI", "real-time systems"];
+const ROTATING_WORDS = ["agentic AI", "production systems", "AI-driven projects"];
 
 type HeroSplitTextProps = {
   text: string;
@@ -129,7 +129,7 @@ export function HeroHeadline({ active }: { active: boolean }) {
       </HeroLineReveal>
 
       <HeroLineReveal active={active} delay={HERO_TIMELINE.headlineL3} className="block text-neutral-100">
-        and <span className="font-semibold text-cyan-300">GenAI</span> systems.
+        from <span className="font-semibold text-cyan-300">PhD autonomy</span> to deployed GenAI.
       </HeroLineReveal>
     </h1>
   );
@@ -232,7 +232,7 @@ export function HeroTagline({ active }: { active: boolean }) {
       delay={HERO_TIMELINE.tagline}
       className="mx-auto mt-7 block max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0"
     >
-      PhD-trained founder translating ambiguous operational problems into deployable software.
+      PhD-trained in autonomous systems and robotics — from algorithm development and full DevOps ownership to customer-facing delivery. Now driving applied AI and agentic GenAI at RH Marine and in founder projects.
     </HeroLineReveal>
   );
 }

@@ -37,75 +37,73 @@ const sidebarItems = [
 
 const capabilities = [
   {
-    title: "Collision-Avoidance Product Lifecycle",
-    text: "Lead CAS development, CI/CD, automated testing, deployment, monitoring, release planning and evaluation at RH Marine.",
+    title: "AI-Driven Project Delivery",
+    text: "At RH Marine Autonomy / AI team: lead CAS lifecycle and drive AI-assisted tooling, RAG and agentic workflows into production engineering.",
   },
   {
-    title: "Scenario-Based Evaluation",
-    text: "Standardize acceptance criteria, bounded failure conditions and scenario-based testing for systematic algorithm assessment.",
+    title: "Algorithms to Production",
+    text: "Ship real-time C++ collision avoidance, sensor fusion, optimization and probabilistic tracking from research prototypes to industrial systems.",
   },
   {
-    title: "RAG & Internal AI Tooling",
-    text: "Build Python and JavaScript tools over proprietary code/docs to support engineering analysis, debugging and visualization.",
+    title: "Full DevOps Ownership",
+    text: "Own CI/CD, automated testing, deployment, monitoring and release planning — grew from algorithm developer into end-to-end product delivery.",
   },
   {
-    title: "Real-Time Autonomous Systems",
-    text: "Ship C++ collision avoidance, radar-based GPS-denied localization, optimization and sensor-fusion systems into production.",
+    title: "Customer-Facing Validation",
+    text: "Forward-deployed style work: customer requirements, vessel commissioning, acceptance testing and stakeholder handover (~3–5 deployments/year).",
   },
   {
-    title: "Founder-Led Product Shipping",
-    text: "Built Helperhub solo in 3-4 months and led live e-commerce AI virtual try-on integration for Lensdy.",
+    title: "Agentic AI & RAG Tooling",
+    text: "Build internal assistants over proprietary code/docs, agentic automation and Cursor-first workflows — at RH Marine and in personal products.",
   },
   {
-    title: "Workflow Automation",
-    text: "Build daily-production automations including n8n bookkeeping flows with extraction, validation and human review.",
+    title: "Founder-Led GenAI Products",
+    text: "Helperhub, Lensdy virtual try-on, n8n bookkeeping automation and personal agentic AI systems shipped end-to-end.",
   },
 ];
 
 const experienceItems = [
   {
     eyebrow: "Aug 2025 - Present",
-    title: "Consultant & CAS Team Lead, Autonomy",
-    meta: "RH Marine · Rotterdam area, Netherlands",
-    text: "Leads the Collision Avoidance System team and full product lifecycle across development, CI/CD, testing, deployment, monitoring and planning.",
+    title: "Consultant & CAS Team Lead — Autonomy / AI",
+    meta: "RH Marine · Rotterdam area · applied AI & product lifecycle",
+    text: "Leads the Collision Avoidance System team while driving AI-driven initiatives across the Autonomy and AI teams — from RAG tooling to agentic engineering workflows in production.",
     bullets: [
-      "Standardized evaluation frameworks and scenario-based testing before each release.",
-      "Built AI-assisted internal tooling and RAG over proprietary code/docs, including a JavaScript visualization tool used as a standard autonomy-team workflow.",
-      "Improved algorithm performance and system robustness; contributed to a full-lifecycle cybersecurity project using CAS as case study.",
+      "Own full product lifecycle: development, CI/CD, automated testing, deployment, monitoring and release planning.",
+      "Drive AI-assisted internal tooling and RAG over proprietary code/docs; visualization tools adopted as standard autonomy-team workflow.",
+      "Standardized evaluation frameworks and scenario-based testing; contributed to full-lifecycle cybersecurity using CAS as case study.",
     ],
   },
   {
     eyebrow: "Oct 2023 - Jul 2025",
     title: "Consultant, Autonomous Systems",
-    meta: "RH Marine · real-time C++ · customer validation",
-    text: "Migrated collision-avoidance systems from research prototype to industrial-grade real-time C++, with customer requirements, integration and vessel commissioning support.",
+    meta: "RH Marine · algorithms · DevOps · customer-facing",
+    text: "Grew from algorithm development into industrial delivery: migrated collision-avoidance from research prototype to real-time C++, built DevOps pipelines and worked directly with customers on integration and commissioning.",
     bullets: [
-      "Redesigned risk and COLREGs compliance models for robustness in dense traffic.",
+      "Redesigned risk and COLREGs compliance models; deployed optimization and radar-based GPS-denied localization into safety-critical production.",
       "Supported pilot validation and on-board commissioning for integration, acceptance testing and handover.",
-      "Deployed multi-objective optimization and radar-based GPS-denied localization into real-time, safety-critical production systems.",
-      "Built a Python RAG assistant over proprietary code and technical documentation.",
+      "Built Python RAG assistant over proprietary code and technical documentation — early pivot toward applied AI in engineering.",
     ],
   },
   {
     eyebrow: "Oct 2019 - Oct 2023",
     title: "PhD Researcher, Autonomous Systems",
-    meta: "KU Leuven / RH Marine · MSCA Fellow",
-    text: "Researched autonomous sailing, collision avoidance, improved Hybrid A*, radar-AIS sensor fusion, PMBM tracking and quantitative evaluation.",
+    meta: "KU Leuven / RH Marine · MSCA Fellow · robotics & autonomy",
+    text: "PhD in autonomous sailing, collision avoidance and sensor fusion — foundation in robotics, probabilistic tracking and quantitative evaluation before moving fully into industry software delivery.",
     bullets: [
-      "PhD thesis: Efficient Autonomous Sailing System in Real-life Scenarios.",
-      "Published real-time collision avoidance and radar-AIS sensor fusion work in Ocean Engineering.",
-      "Ported collision-avoidance algorithm to ROS C++ during MARIN secondment and validated in simulator and real-ship experiments.",
-      "Designed quantitative evaluation using baseline comparison and metrics including GOSPA.",
+      "Thesis: Efficient Autonomous Sailing System in Real-life Scenarios.",
+      "Published collision avoidance and radar–AIS sensor fusion in Ocean Engineering; validated in simulation and on-water experiments.",
+      "MARIN secondment: ported algorithms to ROS C++; designed evaluation with GOSPA and baseline comparison.",
     ],
   },
   {
     eyebrow: "Ongoing / Apr 2023 - Present",
     title: "Founder Work: Helperhub and Lensdy",
     meta: "Founder · sole engineer · AI e-commerce",
-    text: "Built Helperhub from zero, co-founded Lensdy, integrated AI virtual try-on and led early Dutch-market business development.",
+    text: "Built Helperhub from zero with agent-first development; co-founded Lensdy and integrated AI virtual try-on — personal lab for agentic AI and GenAI product experiments.",
     bullets: [
-      "Built Helperhub solo in 3-4 months with Django, React, PostgreSQL, Docker and AWS.",
-      "Owned commercial cold start by narrowing to airport transfers, recruiting supply first and hand-building provider profiles.",
+      "Built Helperhub solo in 3–4 months with Django, React, PostgreSQL, Docker and AWS.",
+      "Agent-first development with Cursor since early 2025; ships features via agentic workflows.",
       "Integrated AI-powered virtual try-on into Lensdy's live e-commerce workflow.",
     ],
   },
@@ -125,8 +123,8 @@ const projects = [
   {
     title: "Helperhub",
     status: "Live founder product",
-    text: "Two-sided task posting and matching platform for overseas Chinese, built solo with Django, React, PostgreSQL, Docker and AWS.",
-    tags: ["Django", "React", "PostgreSQL", "AWS"],
+    text: "Two-sided marketplace built solo with agent-first development — Django, React, PostgreSQL, Docker and AWS.",
+    tags: ["Django", "React", "Agentic AI", "AWS"],
   },
   {
     title: "Procurement Optimization Platform",
@@ -137,8 +135,8 @@ const projects = [
   {
     title: "Internal Engineering RAG Assistant",
     status: "RH Marine internal tooling",
-    text: "Python assistant over proprietary source code and technical documentation for engineering analysis, debugging and knowledge retrieval.",
-    tags: ["Python", "RAG", "Engineering"],
+    text: "Python assistant over proprietary source code and technical documentation — early applied-AI tooling that informed later RAG and agentic workflows at RH Marine.",
+    tags: ["Python", "RAG", "Engineering AI"],
   },
   {
     title: "AI Day-Trading Toolkit",
@@ -160,7 +158,14 @@ const projects = [
   },
 ];
 
-const proofItems = ["3+ yrs safety-critical software", "1.5+ yrs GenAI / agents", "3-4 months to ship Helperhub", "€200+/month service fees", "3+ yrs contracting", "3-5 vessel deployments / year"];
+const proofItems = [
+  "PhD autonomy & robotics",
+  "Algorithm dev → DevOps",
+  "1.5+ yrs applied GenAI",
+  "RH Marine Autonomy / AI",
+  "Agentic AI products",
+  "3–5 vessel deployments / yr",
+];
 
 const educationItems = [
   {
@@ -203,8 +208,8 @@ const skillGroups = [
     items: ["Sensor fusion", "Radar / AIS", "Collision avoidance", "COLREGs", "Optimization", "Probabilistic modelling", "Bayesian inference", "State-space models"],
   },
   {
-    title: "Delivery / Commercial",
-    items: ["Requirements to deployment", "Scenario-based acceptance", "Technical demonstrations", "On-board commissioning", "Customer validation", "Marketplace cold-start", "Quoting to delivery"],
+    title: "Delivery / DevOps",
+    items: ["Requirements → deployment", "CI/CD & Azure DevOps", "Scenario-based acceptance", "Customer validation", "On-board commissioning", "Forward-deployed delivery"],
   },
   {
     title: "Languages",
@@ -342,7 +347,7 @@ function HeroIntro({ skipHeroEntranceDelay }: { skipHeroEntranceDelay: boolean }
       <div className="hero-animate-group pointer-events-none absolute right-6 top-6 z-20 md:right-12 md:top-10 lg:right-20">
         <div className="inline-block max-w-[min(100vw-3rem,20rem)] text-right">
           <p className="font-heading text-xs font-medium uppercase tracking-widest text-blue-500 sm:text-sm">
-              Applied AI · Autonomy · Founder
+              PhD Autonomy → Applied AI · Founder
           </p>
           <div className="mt-2 flex w-full justify-between text-blue-400/50 sm:mt-2.5" aria-hidden>
             <Infinity className="h-5 w-5 shrink-0 animate-float" strokeWidth={1.5} />
@@ -387,7 +392,7 @@ function HeroIntro({ skipHeroEntranceDelay }: { skipHeroEntranceDelay: boolean }
                 Applied AI Engineer
               </span>
               <span className="hero-chip rounded-full border border-neutral-700/80 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-300">
-                AI Solutions / Forward Deployed
+                Algorithms → DevOps → AI
               </span>
               <span className="hero-chip rounded-full border border-cyan-400/50 bg-neutral-950/70 px-4 py-2 text-[0.95rem] font-semibold text-neutral-100">
                 Founder
@@ -399,7 +404,7 @@ function HeroIntro({ skipHeroEntranceDelay }: { skipHeroEntranceDelay: boolean }
                 Signal
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[0.95rem] font-semibold uppercase tracking-[0.22em] text-neutral-500 md:justify-start">
-                <HeroSignalItems items={["RH Marine", "Helperhub", "KU Leuven PhD"]} active={animate} />
+                <HeroSignalItems items={["RH Marine Autonomy / AI", "Agentic products", "KU Leuven PhD"]} active={animate} />
               </div>
             </div>
 
@@ -419,25 +424,25 @@ function PersonalManifesto() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(34,211,238,0.08),transparent_30rem)]" aria-hidden />
       <div className="reveal-section relative z-10 mx-auto max-w-4xl">
         <p className="reveal-item font-heading text-[clamp(1.35rem,3.3vw,2.05rem)] font-semibold leading-snug text-neutral-600" data-delay="0">
-          <span className="text-cyan-300">3+ years shipping production software</span> in safety-critical environments.
+          <span className="text-cyan-300">PhD in autonomous systems and robotics</span> — collision avoidance, sensor fusion and on-water validation.
         </p>
         <p className="reveal-item mt-3 font-heading text-[clamp(1.2rem,2.8vw,1.7rem)] font-semibold leading-snug text-neutral-500" data-delay="1">
-          1.5+ years building GenAI and agentic systems end-to-end.
+          In industry: started with algorithm development, grew into full DevOps ownership and customer-facing delivery at RH Marine.
         </p>
         <p className="reveal-item mt-8 font-heading text-[clamp(1.15rem,2.5vw,1.55rem)] font-semibold leading-snug text-neutral-500" data-delay="2">
-          From collision avoidance at RH Marine to founder-built products.
+          The last 1.5 years: a deliberate pivot to applied AI and GenAI.
         </p>
         <p className="reveal-item mt-2 font-heading text-[clamp(1.25rem,2.8vw,1.75rem)] font-bold leading-snug text-neutral-300" data-delay="3">
-          Building <span className="text-cyan-300">deployable solutions from ambiguity.</span>
+          Driving <span className="text-cyan-300">AI-driven projects</span> on the Autonomy / AI team — and building agentic systems as a founder.
         </p>
         <p className="reveal-item mx-auto mt-12 max-w-3xl text-[1.05rem] leading-8 text-neutral-500" data-delay="4">
-          Comfortable owning the path from problem framing and architecture through testing, deployment and customer-facing
-          validation.
+          The through-line: translate ambiguous operational problems into deployable software — from research code to CI/CD pipelines,
+          customer commissioning and now LLM agents, RAG and workflow automation.
         </p>
         <div className="reveal-item mt-10 space-y-2 font-heading text-[clamp(1.15rem,2.6vw,1.65rem)] font-semibold leading-snug" data-delay="5">
-          <p className="text-neutral-100">Autonomous systems, RAG tools, workflow automation and founder-led products.</p>
-          <p className="text-neutral-400">Requirements → architecture → implementation → testing → deployment.</p>
-          <p className="text-cyan-300">Customer validation included.</p>
+          <p className="text-neutral-100">Robotics foundation → algorithms → DevOps → customer validation → applied AI.</p>
+          <p className="text-neutral-400">Research → implementation → testing → deployment → AI project delivery.</p>
+          <p className="text-cyan-300">Agentic AI in production engineering and personal products.</p>
         </div>
       </div>
     </section>
@@ -446,7 +451,7 @@ function PersonalManifesto() {
 
 function WhatIBuild() {
   return (
-    <SectionShell id="experience" eyebrow="Work Experience" title="Applied AI, autonomous systems and production delivery.">
+    <SectionShell id="experience" eyebrow="Work Experience" title="From PhD robotics to algorithms, DevOps, and applied AI delivery.">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {capabilities.map((item, index) => (
           <article key={item.title} className="flashlight-card reveal-item min-h-52 p-6" data-delay={index % 6}>
@@ -491,7 +496,7 @@ function WhatIBuild() {
 
 function SelectedProjects() {
   return (
-    <SectionShell id="projects" eyebrow="Selected projects" title="Live products, internal tools and AI automation from the CV.">
+    <SectionShell id="projects" eyebrow="Selected projects" title="Agentic AI, internal tooling and live products from the pivot to applied GenAI.">
       <div className="grid gap-4 lg:grid-cols-2">
         {projects.map((project, index) => (
           <article key={project.title} className="portfolio-project-card reveal-item" data-delay={index}>
@@ -557,7 +562,7 @@ function EducationSection() {
 
 function SkillsStack() {
   return (
-    <SectionShell id="skills" eyebrow="Skills stack" title="Skills from AI systems, production engineering and commercial delivery.">
+    <SectionShell id="skills" eyebrow="Skills stack" title="Applied AI on top of autonomy, DevOps and customer-facing delivery.">
       <div className="grid gap-4 md:grid-cols-2">
         {skillGroups.map((group, index) => (
           <article key={group.title} className="reveal-item rounded-3xl border border-neutral-800/80 bg-neutral-900/45 p-6" data-delay={index}>
@@ -585,7 +590,8 @@ function ContactFooter() {
             Tianlei(Kai) Miao
           </p>
           <p className="reveal-item max-w-xl text-sm leading-6 text-neutral-500" data-delay="1">
-            Applied AI Engineer · AI Solutions / Forward Deployed · Founder, based in Capelle aan den IJssel, Netherlands.
+            PhD autonomy → algorithms & DevOps → applied AI. Driving AI-driven projects at RH Marine (Autonomy / AI team) and
+            building agentic GenAI products as a founder. Based in Capelle aan den IJssel, Netherlands.
           </p>
         </div>
         <div className="reveal-item flex flex-col gap-5 md:items-end" data-delay="2">

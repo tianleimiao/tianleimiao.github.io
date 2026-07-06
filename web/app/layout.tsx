@@ -17,8 +17,9 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tianlei(Kai) Miao — Creative Studio",
-  description: "Personal portfolio with WebGL shader hero.",
+  title: "Tianlei(Kai) Miao — Applied AI Engineer",
+  description:
+    "PhD in autonomous systems. Algorithm developer to DevOps lead, now driving applied AI and agentic GenAI at RH Marine and in founder products.",
 };
 
 export default function RootLayout({

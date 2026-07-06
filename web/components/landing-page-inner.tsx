@@ -6,12 +6,11 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, Brain, Infinity, Mail, Rocket, Shield } from "lucide-react";
 
 import {
-  HeroGradientSplitText,
+  HeroGreeting,
+  HeroHeadline,
   HeroNavPills,
-  HeroRoleRotator,
-  HeroScrambleLabel,
   HeroSignalItems,
-  HeroSplitText,
+  HeroTagline,
   useHeroMotionReady,
 } from "@/components/hero-text-effects";
 import { SvgBeamDefs } from "@/components/svg-beam-defs";
@@ -398,34 +397,11 @@ function HeroIntro({
           </div>
 
           <div className="hero-copy text-center md:text-left">
-            <p className="mb-5 text-[clamp(1.1rem,2vw,1.45rem)] font-semibold text-neutral-300">
-              Hi, I&apos;m{" "}
-              <span className="hero-name-glow text-cyan-300">
-                <HeroSplitText text="Tianlei(Kai) Miao" baseDelay={0.02} charStagger={0.022} active={animate} />
-              </span>
-              ,
-            </p>
-            <h1 className="font-heading text-[clamp(2.2rem,5.6vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
-              <span className="block">
-                <HeroGradientSplitText
-                  text="Applied AI engineer"
-                  baseDelay={0.1}
-                  charStagger={0.032}
-                  active={animate}
-                />
-              </span>
-              <span className="hero-title-line block text-neutral-100">
-                shipping <HeroRoleRotator active={animate || skipHeroEntranceDelay} />
-              </span>
-              <span className="hero-title-line block text-neutral-100">
-                and <HeroScrambleLabel label="GenAI" active={animate} /> systems.
-              </span>
-            </h1>
-            <p className="hero-text-reveal mx-auto mt-7 max-w-2xl text-[clamp(1.25rem,2.8vw,1.75rem)] font-semibold tracking-[0.01em] text-neutral-400 md:mx-0">
-              PhD-trained founder translating ambiguous operational problems into deployable software.
-            </p>
+            <HeroGreeting active={animate} />
+            <HeroHeadline active={animate} />
+            <HeroTagline active={animate} />
 
-            <div className="mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
+            <div className="hero-chip-row mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
               <span className="hero-chip rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-[0.95rem] font-semibold text-cyan-100">
                 Applied AI Engineer
               </span>

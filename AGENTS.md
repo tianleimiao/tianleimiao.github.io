@@ -50,7 +50,6 @@ Invoke by name or let the agent auto-discover from descriptions:
 | `verify-and-commit` | Task is done; run lint/build and commit |
 | `google-frontend` | UI/UX, performance, a11y, Core Web Vitals |
 | `github-pages-deploy` | basePath, CI, static export, deployment issues |
-| `shader-effects` | WebGL shaders, intro animation, Three.js |
 | `feature-automation` | Full plan → implement → verify → commit pipeline |
 
 ## Key paths

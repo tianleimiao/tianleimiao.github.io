@@ -64,6 +64,23 @@ html {
   filter: blur(10px);
 }
 
+/* Line mask reveal — shared motion language with char split */
+.hero-line-reveal {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-line-reveal-inner {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(112%);
+  filter: blur(8px);
+}
+
+.hero-intro-animate .hero-line-reveal-inner.is-active {
+  animation: hero-line-rise 0.82s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 /* SplitText-style char reveal */
 .hero-split-text {
   display: inline;
@@ -118,32 +135,45 @@ html {
 }
 
 .hero-role-rotator {
-  position: relative;
-  display: inline-grid;
-  min-width: 11ch;
+  display: inline-block;
   vertical-align: bottom;
-  text-align: left;
+  position: relative;
+  min-width: var(--hero-role-width, 10ch);
+  transition: min-width 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-role-rotator-track {
+  display: grid;
+  overflow: hidden;
+  height: 1.14em;
+  line-height: 1.14;
 }
 
 .hero-role-rotator-slot {
   grid-area: 1 / 1;
+  white-space: nowrap;
   opacity: 0;
-  transform: translateY(18px) scale(0.96);
-  filter: blur(8px);
-  transition:
-    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(105%);
+  filter: blur(6px);
+  pointer-events: none;
 }
 
 .hero-role-rotator-slot.is-active {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   filter: blur(0);
 }
 
 .hero-role-rotator-slot.is-ready.is-active {
-  animation: hero-role-glow 3.2s ease-in-out infinite;
+  animation: hero-role-glow 3.4s ease-in-out infinite;
+}
+
+.hero-role-rotator-slot.is-exiting {
+  animation: hero-role-exit 0.48s cubic-bezier(0.55, 0, 0.95, 0.45) forwards;
+}
+
+.hero-role-rotator-slot.is-entering {
+  animation: hero-role-enter 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .hero-scramble-label {
@@ -182,52 +212,28 @@ html {
 }
 
 .hero-intro-animate .hero-signal-block::after {
-  animation: hero-signal-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.88s forwards;
+  animation: hero-signal-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.95s forwards;
 }
 
-.hero-intro-ready.hero-intro-animate .hero-text-reveal:first-child {
-  animation: hero-text-rise 0.7s cubic-bezier(0.2, 0.85, 0.35, 1) 0.05s forwards;
-}
-
-.hero-intro-ready.hero-intro-animate .hero-title-line:nth-child(2) {
-  animation: hero-text-rise 0.55s cubic-bezier(0.2, 0.85, 0.35, 1) 0.18s forwards;
-}
-
-.hero-intro-ready.hero-intro-animate .hero-title-line:nth-child(3) {
-  animation: hero-text-rise 0.55s cubic-bezier(0.2, 0.85, 0.35, 1) 0.28s forwards;
-}
-
-.hero-intro-ready.hero-intro-animate .hero-text-reveal:not(:first-child) {
-  animation: hero-text-rise 0.75s cubic-bezier(0.2, 0.85, 0.35, 1) 0.48s forwards;
-}
-
-.hero-intro-ready.hero-intro-animate .hero-signal-label {
-  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) 0.82s forwards;
-}
-
-.hero-intro-ready.hero-intro-animate .hero-signal-item.is-active {
+.hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip {
+  position: relative;
+  overflow: hidden;
   animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
 }
 
-.hero-intro-ready.hero-intro-animate .hero-nav-pill.is-active {
-  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+.hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip:nth-child(1) {
+  animation-delay: 1.58s;
 }
 
-.hero-intro-ready.hero-intro-animate .hero-chip {
-  position: relative;
-  overflow: hidden;
-  animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) 0.58s forwards;
+.hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip:nth-child(2) {
+  animation-delay: 1.7s;
 }
 
-.hero-intro-ready.hero-intro-animate .hero-chip:nth-child(2) {
-  animation-delay: 0.7s;
+.hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip:nth-child(3) {
+  animation-delay: 1.82s;
 }
 
-.hero-intro-ready.hero-intro-animate .hero-chip:nth-child(3) {
-  animation-delay: 0.82s;
-}
-
-.hero-intro-ready.hero-intro-animate .hero-chip::after {
+.hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip::after {
   content: "";
   position: absolute;
   inset: -40% -120%;
@@ -242,6 +248,47 @@ html {
   background-size: 260% 100%;
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-signal-label {
+  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) 1.72s forwards;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-signal-item.is-active {
+  animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+.hero-intro-ready.hero-intro-animate .hero-nav-pill.is-active {
+  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+}
+
+@keyframes hero-line-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-role-enter {
+  from {
+    opacity: 0;
+    transform: translateY(105%);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes hero-role-exit {
+  to {
+    opacity: 0;
+    transform: translateY(-105%);
+    filter: blur(6px);
+  }
 }
 
 @keyframes hero-char-rise {
@@ -359,6 +406,7 @@ html {
   }
 
   .hero-split-char-inner,
+  .hero-line-reveal-inner,
   .hero-role-rotator-slot {
     opacity: 1;
     transform: none;
@@ -389,6 +437,7 @@ html {
 .hero-intro-skip-enter .hero-signal-item,
 .hero-intro-skip-enter .hero-nav-pill,
 .hero-intro-skip-enter .hero-split-char-inner,
+.hero-intro-skip-enter .hero-line-reveal-inner,
 .hero-intro-skip-enter .hero-role-rotator-slot,
 .hero-intro-skip-enter .hero-chip::after,
 .hero-intro-skip-enter .hero-signal-block::after,
@@ -399,6 +448,7 @@ html {
 .embed-preview .hero-signal-item,
 .embed-preview .hero-nav-pill,
 .embed-preview .hero-split-char-inner,
+.embed-preview .hero-line-reveal-inner,
 .embed-preview .hero-role-rotator-slot,
 .embed-preview .hero-chip::after,
 .embed-preview .hero-signal-block::after {

@@ -68,3 +68,22 @@ See [`.github/workflows/deploy-github-pages.yml`](.github/workflows/deploy-githu
 
 - **Project site** (`https://<user>.github.io/<repo>/`): CI sets `GITHUB_REPOSITORY`; [`next.config.ts`](web/next.config.ts) applies `basePath` so asset URLs resolve.
 - **User site** (repo named `<user>.github.io`): `basePath` stays empty.
+
+## Agentic development (Cursor)
+
+This repo includes an agent framework for automated development:
+
+| Path | Purpose |
+|------|---------|
+| [`AGENTS.md`](AGENTS.md) | Entry point — workflow, commands, constraints |
+| [`.cursor/rules/`](.cursor/rules/) | Persistent rules (verify-after-edit, git, Next.js, shaders) |
+| [`.cursor/skills/`](.cursor/skills/) | Skills: verify-and-commit, google-frontend, deploy, shaders |
+| [`.cursor/hooks.json`](.cursor/hooks.json) | Stop hook — reminds agent to validate before finishing |
+
+**Validation gate** (run before every commit):
+
+```bash
+cd web && npm run validate   # lint + typecheck + build
+```
+
+Trigger full automation with phrases like **「完成并提交」** or **「verify and commit」**.

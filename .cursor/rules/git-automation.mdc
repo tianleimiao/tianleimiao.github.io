@@ -1,0 +1,64 @@
+---
+description: Git commit automation — staging, messages, and safety for agentic workflows
+alwaysApply: true
+---
+
+# Git Automation
+
+## When to commit
+
+Commit after `npm run validate` passes AND:
+
+- User requested commit/automation, OR
+- Task explicitly includes shipping the change
+
+Never commit without passing validation. Never commit `.next/`, `out/`, `node_modules/`, `.env*`.
+
+## Commit workflow
+
+Run in parallel first:
+
+```bash
+git status
+git diff
+git log -3 --oneline
+```
+
+Then sequentially:
+
+```bash
+git add <relevant-files>
+git commit -m "$(cat <<'EOF'
+<type>: <short summary>
+
+<optional body — why this change matters>
+EOF
+)"
+git status
+```
+
+## Message format
+
+Use conventional commits:
+
+| Type | Use for |
+|------|---------|
+| `feat` | New feature or section |
+| `fix` | Bug fix |
+| `style` | Visual/CSS only |
+| `perf` | Performance |
+| `refactor` | Code restructure, no behavior change |
+| `chore` | Tooling, deps, CI |
+
+Example: `feat(hero): add scroll reveal to capabilities section`
+
+## Safety (never)
+
+- `git push --force` to main/master
+- `git commit --amend` unless HEAD was your commit and not pushed
+- `--no-verify` / `--no-gpg-sign`
+- Committing secrets or build output
+
+## Push
+
+Only push when user explicitly asks. Use `git push -u origin HEAD` for new branches.

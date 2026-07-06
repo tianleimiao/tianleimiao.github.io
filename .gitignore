@@ -26,3 +26,6 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Cursor agent plans (local scratch; rules/skills are tracked)
+.cursor/plans/

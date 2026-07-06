@@ -1,0 +1,53 @@
+---
+description: Next.js 15 App Router, React 19, and Tailwind conventions for web/
+globs: web/**/*.{ts,tsx,css}
+alwaysApply: false
+---
+
+# Next.js Frontend Conventions
+
+## Stack
+
+- Next.js 15 App Router, static export (`output: "export"`)
+- React 19 functional components
+- Tailwind CSS + `cn()` from `@/lib/utils`
+- shadcn-style paths: `@/components`, `@/hooks`, `@/lib`
+
+## Component patterns
+
+```tsx
+// Client components with browser APIs or hooks
+"use client";
+
+// Server components by default in app/ — no directive needed
+import type { Metadata } from "next";
+```
+
+- Dynamic import WebGL/shader components: `dynamic(..., { ssr: false })`
+- Colocate component-specific logic in hooks under `web/hooks/`
+- Global animations/tokens in `web/app/globals.css`
+
+## Styling
+
+- Prefer Tailwind utilities; use `cn()` for conditional classes
+- Dark theme: `<html className="dark">` in layout
+- Reveal animations: `reveal-section`, `data-hero-on-view` + `useLandingEffects`
+
+## Static export constraints
+
+- No `getServerSideProps`, API routes, or server actions requiring runtime
+- Images: `unoptimized: true` in next.config
+- basePath from `NEXT_PUBLIC_BASE_PATH` for GitHub Pages asset URLs
+
+## File naming
+
+- Components: `kebab-case.tsx` exporting `PascalCase` function
+- Hooks: `use-*.ts`
+- Keep landing page sections in `landing-page-inner.tsx`
+
+## Imports
+
+```tsx
+import { cn } from "@/lib/utils";
+import { SomeIcon } from "lucide-react";
+```

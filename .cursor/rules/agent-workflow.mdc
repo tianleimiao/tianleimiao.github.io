@@ -1,0 +1,49 @@
+---
+description: Mandatory agent workflow — verify after every code change, then commit when task completes
+alwaysApply: true
+---
+
+# Agent Workflow
+
+## After every code change
+
+Before reporting a task as done:
+
+1. Run validation from `web/`:
+   ```bash
+   cd web && npm run validate
+   ```
+2. If lint or build fails → fix and re-run until green.
+3. Read linter diagnostics for edited files (`ReadLints`).
+
+## Task completion checklist
+
+```
+- [ ] Changes are minimal and match project conventions
+- [ ] `npm run validate` passes (lint + build)
+- [ ] No secrets or build artifacts staged
+- [ ] Git commit created (when automation requested or user asked)
+- [ ] Commit message describes WHY, not just WHAT
+```
+
+## Automation mode
+
+Auto-commit after successful validation when the user says:
+
+- "完成并提交", "verify and commit", "ship it", "automate"
+- Or explicitly includes "commit" / "提交" in the task
+
+Otherwise: verify always, commit only on explicit request.
+
+## Scope discipline
+
+- App source: `web/` only (not repo root)
+- Do not edit unrelated files
+- Do not add tests/docs unless requested
+- Comments in code: English only
+
+## Failure handling
+
+- Validation failed → fix root cause, do not skip steps
+- Pre-commit hook rejected → fix issue, create NEW commit (never `--amend` unless rules allow)
+- Missing deps → `cd web && npm install`, then retry validate

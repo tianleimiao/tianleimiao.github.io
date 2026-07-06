@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "hooks": {
+    "stop": [
+      {
+        "type": "prompt",
+        "prompt": "The agent is finishing. If any files under web/ were modified in this session, confirm that `cd web && npm run validate` was run successfully before the task was marked complete. If not validated yet, return followup_message asking the agent to run validation and commit if the user requested automation. Otherwise return empty followup.",
+        "timeout": 15,
+        "loop_limit": 1
+      }
+    ]
+  }
+}

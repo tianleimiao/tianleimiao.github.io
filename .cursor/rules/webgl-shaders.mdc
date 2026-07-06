@@ -1,0 +1,34 @@
+---
+description: WebGL shader and Three.js patterns for intro and hero backgrounds
+globs: web/components/ui/*shader*,web/components/ui/*Shader*
+alwaysApply: false
+---
+
+# WebGL / Shader Rules
+
+## Architecture
+
+- Shader components live in `web/components/ui/`
+- Always `"use client"` — WebGL needs browser APIs
+- Load via `next/dynamic` with `ssr: false` from parent
+- Reference: `shader-animation.tsx` (intro), `animated-shader-background.tsx` (hero)
+
+## Performance
+
+- Dispose Three.js resources on unmount (geometry, material, renderer)
+- Use `requestAnimationFrame` loop; cancel in cleanup
+- Avoid creating new objects inside the render loop
+- Respect `prefers-reduced-motion` when adding motion-heavy effects
+
+## Intro overlay
+
+- `ShaderAnimation` accepts `onIntroEnd`, `forceSkipIntro`
+- Dev mode skips intro (`NODE_ENV === "development"`)
+- Fallback timeout (~6s) in `landing-page.tsx` if intro stalls
+
+## Adding new effects
+
+1. Copy pattern from existing shader component
+2. Export typed props interface
+3. Parent wraps with `dynamic(..., { ssr: false, loading: () => ... })`
+4. Test build — shaders must not break static export

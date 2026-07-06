@@ -17,10 +17,11 @@ const ShaderAnimation = dynamic<ShaderAnimationProps>(
 
 export function LandingPage() {
   const introCtx = useContext(DeviceDesktopIntroContext);
-  const forceSkipIntro = introCtx?.desktopIntroCompleted ?? false;
+  const skipIntroInDev = process.env.NODE_ENV === "development";
+  const forceSkipIntro = (introCtx?.desktopIntroCompleted ?? false) || skipIntroInDev;
   const markDesktopIntroComplete = introCtx?.markDesktopIntroComplete ?? (() => {});
 
-  const [introComplete, setIntroComplete] = useState(() => introCtx?.desktopIntroCompleted ?? false);
+  const [introComplete, setIntroComplete] = useState(() => forceSkipIntro);
 
   const onIntroEnd = useCallback(() => {
     setIntroComplete(true);
@@ -35,7 +36,9 @@ export function LandingPage() {
 
   return (
     <>
-      <ShaderAnimation forceSkipIntro={forceSkipIntro} onIntroEnd={onIntroEnd} />
+      {!skipIntroInDev && (
+        <ShaderAnimation forceSkipIntro={forceSkipIntro} onIntroEnd={onIntroEnd} />
+      )}
       <LandingPageInner
         embedPreview={false}
         introComplete={introComplete}

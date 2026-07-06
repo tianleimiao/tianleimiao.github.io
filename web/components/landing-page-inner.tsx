@@ -312,7 +312,8 @@ function HeroIntro({
       id="hero-intro"
       className={cn(
         "relative flex min-h-[92vh] flex-col justify-center overflow-hidden border-b border-neutral-800/80 bg-neutral-950 px-6 shadow-sm md:px-12 lg:px-20",
-        skipHeroEntranceDelay && "hero-intro-skip-enter"
+        skipHeroEntranceDelay && "hero-intro-skip-enter",
+        (introDone || skipHeroEntranceDelay) && "hero-intro-ready"
       )}
     >
       {introDone ? (
@@ -359,7 +360,7 @@ function HeroIntro({
       </div>
 
       <div className="relative z-20 mx-auto w-full max-w-6xl">
-        <div className="hero-animate-group grid gap-10 py-24 md:grid-cols-[12rem_1fr] md:items-start md:py-28 lg:grid-cols-[13rem_1fr] lg:gap-12">
+        <div className="grid gap-10 py-24 md:grid-cols-[12rem_1fr] md:items-start md:py-28 lg:grid-cols-[13rem_1fr] lg:gap-12">
           <div className="relative mx-auto w-36 md:mx-0 md:mt-2 md:w-44 lg:w-48">
             <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-cyan-400/40 via-blue-500/20 to-violet-500/30 blur-xl" aria-hidden />
             <div className="relative aspect-square overflow-hidden rounded-full border border-cyan-300/45 bg-neutral-900 p-1 shadow-[0_0_40px_-14px_rgba(34,211,238,0.9)]">

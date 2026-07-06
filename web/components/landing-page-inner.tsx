@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowUpRight, Brain, Infinity, Mail, Rocket, Shield } from "lucide-react";
@@ -11,18 +10,12 @@ import {
   HeroNavPills,
   HeroSignalItems,
   HeroTagline,
-  useHeroMotionReady,
+  useHeroEntranceActive,
 } from "@/components/hero-text-effects";
 import { SvgBeamDefs } from "@/components/svg-beam-defs";
 import { heroShaderBackdropClassName } from "@/components/ui/hero-shader-backdrop";
 import { useLandingEffects } from "@/hooks/use-landing-effects";
 import { cn } from "@/lib/utils";
-
-const AnimatedShaderBackground = dynamic(
-  () =>
-    import("@/components/ui/animated-shader-background").then((m) => m.AnimatedShaderBackground),
-  { ssr: false }
-);
 
 const year = new Date().getFullYear();
 const assetBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -221,11 +214,9 @@ const skillGroups = [
 
 export type LandingPageInnerProps =
   | { embedPreview: true }
-  | { embedPreview: false; introComplete: boolean; skipHeroEntranceDelay?: boolean };
+  | { embedPreview: false; skipHeroEntranceDelay?: boolean };
 
 export function LandingPageInner(props: LandingPageInnerProps) {
-  const introDone = props.embedPreview ? true : props.introComplete;
-  // Only skip re-play when returning from device preview iframe — not in dev.
   const skipHeroEntranceDelay =
     props.embedPreview || (!props.embedPreview && Boolean(props.skipHeroEntranceDelay));
   const activeSection = useScrollSpy();
@@ -235,7 +226,7 @@ export function LandingPageInner(props: LandingPageInnerProps) {
   return (
     <>
       <SvgBeamDefs />
-      <HeroIntro introDone={introDone} skipHeroEntranceDelay={skipHeroEntranceDelay} />
+      <HeroIntro skipHeroEntranceDelay={skipHeroEntranceDelay} />
       <ScrollSpySidebar activeSection={activeSection} />
 
       <main className="relative overflow-hidden bg-neutral-950">
@@ -309,15 +300,9 @@ function ScrollSpySidebar({ activeSection }: { activeSection: string }) {
   );
 }
 
-function HeroIntro({
-  introDone,
-  skipHeroEntranceDelay,
-}: {
-  introDone: boolean;
-  skipHeroEntranceDelay: boolean;
-}) {
-  const motionReady = useHeroMotionReady(introDone);
-  const animate = motionReady && !skipHeroEntranceDelay;
+function HeroIntro({ skipHeroEntranceDelay }: { skipHeroEntranceDelay: boolean }) {
+  const animate = useHeroEntranceActive(!skipHeroEntranceDelay);
+  const showHero = animate || skipHeroEntranceDelay;
 
   return (
     <header
@@ -325,21 +310,17 @@ function HeroIntro({
       className={cn(
         "relative flex min-h-[92vh] flex-col justify-center overflow-hidden border-b border-neutral-800/80 bg-neutral-950 px-6 shadow-sm md:px-12 lg:px-20",
         skipHeroEntranceDelay && "hero-intro-skip-enter",
-        introDone && "hero-intro-ready",
+        showHero && "hero-intro-ready",
         animate && "hero-intro-animate"
       )}
     >
-      {introDone ? (
-        <AnimatedShaderBackground className="pointer-events-none absolute inset-0 z-0 h-full min-h-[92vh] w-full opacity-80" />
-      ) : (
-        <div
-          className={cn(
-            "pointer-events-none absolute inset-0 z-0 h-full min-h-[92vh] w-full opacity-80",
-            heroShaderBackdropClassName
-          )}
-          aria-hidden
-        />
-      )}
+      <div
+        className={cn(
+          "hero-static-backdrop pointer-events-none absolute inset-0 z-0 h-full min-h-[92vh] w-full",
+          heroShaderBackdropClassName
+        )}
+        aria-hidden
+      />
 
       <div
         className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-neutral-950/25 via-neutral-950/45 to-neutral-950/80"

@@ -6,15 +6,15 @@ import { cn } from "@/lib/utils";
 
 /** Shared entrance timeline (seconds) — one cascade for the whole hero copy block. */
 export const HERO_TIMELINE = {
-  greeting: 0.08,
-  headlineL1: 0.38,
-  headlineL2: 0.72,
-  headlineL3: 1.02,
-  tagline: 1.32,
-  chips: 1.58,
-  signal: 1.82,
-  nav: 2.06,
-  rotatorCycle: 2.65,
+  greeting: 0.12,
+  headlineL1: 0.45,
+  headlineL2: 0.95,
+  headlineL3: 1.35,
+  tagline: 1.75,
+  chips: 2.05,
+  signal: 2.35,
+  nav: 2.65,
+  rotatorCycle: 3.4,
 } as const;
 
 const ROTATING_WORDS = ["autonomy", "production AI", "real-time systems"];
@@ -115,7 +115,7 @@ function HeroLineReveal({ children, active, delay, className }: HeroLineRevealPr
 export function HeroHeadline({ active }: { active: boolean }) {
   return (
     <h1 className="font-heading text-[clamp(2.2rem,5.6vw,4rem)] font-bold leading-[1.12] tracking-[-0.03em] text-white">
-      <span className="block overflow-hidden">
+      <span className="hero-headline-gradient block overflow-hidden">
         <HeroGradientSplitText
           text="Applied AI engineer"
           baseDelay={HERO_TIMELINE.headlineL1}
@@ -279,22 +279,38 @@ export function HeroNavPills({
   );
 }
 
-export function useHeroMotionReady(introDone: boolean) {
-  const [ready, setReady] = useState(false);
+export function useHeroEntranceActive(enabled: boolean) {
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    if (!introDone) {
-      setReady(false);
+    if (!enabled) {
+      setActive(false);
       return;
     }
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion) {
-      setReady(true);
-      return;
-    }
-    const id = window.requestAnimationFrame(() => setReady(true));
-    return () => window.cancelAnimationFrame(id);
-  }, [introDone]);
 
-  return ready;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setActive(true);
+      return;
+    }
+
+    let cancelled = false;
+    let raf2 = 0;
+
+    const start = () => {
+      raf2 = window.requestAnimationFrame(() => {
+        if (!cancelled) setActive(true);
+      });
+    };
+
+    document.fonts.ready.then(() => {
+      if (!cancelled) window.requestAnimationFrame(start);
+    });
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(raf2);
+    };
+  }, [enabled]);
+
+  return active;
 }

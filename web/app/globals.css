@@ -47,38 +47,54 @@ html {
   }
 }
 
+.hero-static-backdrop {
+  opacity: 0.92;
+}
+
+.hero-intro-ready .hero-static-backdrop {
+  animation: hero-backdrop-breathe 14s ease-in-out infinite;
+}
+
+@keyframes hero-backdrop-breathe {
+  0%,
+  100% {
+    opacity: 0.88;
+  }
+  50% {
+    opacity: 0.96;
+  }
+}
+
 .hero-animate-group {
   opacity: 0;
 }
 
 .hero-intro-ready .hero-animate-group {
   opacity: 1;
-  animation: hero-fade-in 0.7s ease-out forwards;
+  animation: hero-fade-in 0.9s ease-out 0.1s forwards;
 }
 
 .hero-title-line,
 .hero-text-reveal,
 .hero-chip {
   opacity: 0;
-  transform: translateY(18px);
-  filter: blur(10px);
+  transform: translateY(16px);
+}
+
+.hero-line-reveal-inner {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.hero-intro-animate .hero-line-reveal-inner.is-active {
+  animation: hero-line-rise 0.95s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Line mask reveal — shared motion language with char split */
 .hero-line-reveal {
   display: block;
   overflow: hidden;
-}
-
-.hero-line-reveal-inner {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(112%);
-  filter: blur(8px);
-}
-
-.hero-intro-animate .hero-line-reveal-inner.is-active {
-  animation: hero-line-rise 0.82s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* SplitText-style char reveal */
@@ -101,13 +117,11 @@ html {
 .hero-split-char-inner {
   display: inline-block;
   opacity: 0;
-  transform: translateY(115%) rotateX(42deg);
-  filter: blur(8px);
-  transform-origin: 50% 100%;
+  transform: translateY(100%);
 }
 
 .hero-split-char.is-active .hero-split-char-inner {
-  animation: hero-char-rise 0.72s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: hero-char-rise 0.88s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-split-char-gradient .hero-split-char-inner {
@@ -118,12 +132,20 @@ html {
   background-clip: text;
 }
 
+.hero-headline-gradient {
+  color: transparent;
+  background: linear-gradient(90deg, #22d3ee, #60a5fa, #a78bfa, #22d3ee);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.hero-intro-animate .hero-headline-gradient {
+  animation: hero-gradient-pan 6s ease-in-out 1.85s infinite;
+}
+
 .hero-intro-animate .hero-split-char-gradient.is-active .hero-split-char-inner {
-  animation-name: hero-char-rise, hero-gradient-pan;
-  animation-duration: 0.72s, 5.5s;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1), ease-in-out;
-  animation-fill-mode: forwards, none;
-  animation-iteration-count: 1, infinite;
+  animation: hero-char-rise 0.88s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-name-glow {
@@ -131,7 +153,7 @@ html {
 }
 
 .hero-intro-animate .hero-name-glow {
-  animation: hero-name-breathe 4.5s ease-in-out 1.2s infinite;
+  animation: hero-name-breathe 4.5s ease-in-out 2.4s infinite;
 }
 
 .hero-role-rotator {
@@ -153,15 +175,17 @@ html {
   grid-area: 1 / 1;
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(105%);
-  filter: blur(6px);
+  transform: translateY(100%);
   pointer-events: none;
 }
 
-.hero-role-rotator-slot.is-active {
+.hero-role-rotator-slot.is-active:not(.is-exiting) {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
+}
+
+.hero-role-rotator-slot:not(.is-active):not(.is-exiting) {
+  visibility: hidden;
 }
 
 .hero-role-rotator-slot.is-ready.is-active {
@@ -191,8 +215,7 @@ html {
 .hero-signal-item,
 .hero-nav-pill {
   opacity: 0;
-  transform: translateY(14px);
-  filter: blur(6px);
+  transform: translateY(12px);
 }
 
 .hero-signal-block {
@@ -212,25 +235,25 @@ html {
 }
 
 .hero-intro-animate .hero-signal-block::after {
-  animation: hero-signal-line 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.95s forwards;
+  animation: hero-signal-line 0.8s cubic-bezier(0.22, 1, 0.36, 1) 2.55s forwards;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip {
   position: relative;
   overflow: hidden;
-  animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+  animation: hero-text-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip:nth-child(1) {
-  animation-delay: 1.58s;
+  animation-delay: 2.05s;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip:nth-child(2) {
-  animation-delay: 1.7s;
+  animation-delay: 2.2s;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip:nth-child(3) {
-  animation-delay: 1.82s;
+  animation-delay: 2.35s;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-chip-row .hero-chip::after {
@@ -239,7 +262,7 @@ html {
   inset: -40% -120%;
   background: linear-gradient(100deg, transparent 35%, rgba(34, 211, 238, 0.22) 50%, transparent 65%);
   transform: translateX(-45%);
-  animation: hero-chip-sweep 4.8s ease-in-out 1.2s infinite;
+  animation: hero-chip-sweep 4.8s ease-in-out 2.8s infinite;
 }
 
 .hero-title-line-gradient {
@@ -251,51 +274,46 @@ html {
 }
 
 .hero-intro-ready.hero-intro-animate .hero-signal-label {
-  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) 1.72s forwards;
+  animation: hero-text-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 2.28s forwards;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-signal-item.is-active {
-  animation: hero-text-rise 0.65s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+  animation: hero-text-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .hero-intro-ready.hero-intro-animate .hero-nav-pill.is-active {
-  animation: hero-text-rise 0.6s cubic-bezier(0.2, 0.85, 0.35, 1) forwards;
+  animation: hero-text-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes hero-line-rise {
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
 @keyframes hero-role-enter {
   from {
     opacity: 0;
-    transform: translateY(105%);
-    filter: blur(6px);
+    transform: translateY(100%);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
 @keyframes hero-role-exit {
   to {
     opacity: 0;
-    transform: translateY(-105%);
-    filter: blur(6px);
+    transform: translateY(-100%);
   }
 }
 
 @keyframes hero-char-rise {
   to {
     opacity: 1;
-    transform: translateY(0) rotateX(0deg);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -356,7 +374,6 @@ html {
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -401,7 +418,6 @@ html {
   .hero-nav-pill {
     opacity: 1;
     transform: none;
-    filter: none;
     animation: none !important;
   }
 
@@ -410,10 +426,11 @@ html {
   .hero-role-rotator-slot {
     opacity: 1;
     transform: none;
-    filter: none;
     animation: none !important;
+    visibility: visible;
   }
 
+  .hero-static-backdrop,
   .hero-chip::after,
   .hero-bracket-pulse::before,
   .hero-bracket-pulse::after,
